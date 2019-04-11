@@ -1,5 +1,5 @@
 # rat-adventure-game
-An adventure game for a rat
+A puzzle adventure game featuring an escaped lab rat as the main protagnist
 
 ## Engine
 Unity2D version 2018.3.12
