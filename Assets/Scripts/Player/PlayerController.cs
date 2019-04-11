@@ -24,6 +24,9 @@ public class PlayerController : MonoBehaviour
 	private Vector3 autoMoveGoal;
 	private float autoMoveTimeLeft;
 
+	// The rigidbody
+	private Rigidbody2D rgbd2d;
+
 	public void AutoMoveTo(Vector3 autoMoveGoal, float time = 1.0f)
 	{
 		this.autoMoveGoal = autoMoveGoal;
@@ -34,10 +37,11 @@ public class PlayerController : MonoBehaviour
 	protected virtual void Start()
 	{
 		MainCamera.CurrentInstance.FocusObject = this.gameObject;
+		this.rgbd2d = this.GetComponent<Rigidbody2D>();
 	}
 
 	// Update is called once per frame
-	protected virtual void Update()
+	protected virtual void FixedUpdate()
 	{
 		if (this.autoMoveTimeLeft > 0)
 		{
@@ -70,9 +74,11 @@ public class PlayerController : MonoBehaviour
 				y--;
 			}
 
-			this.transform.position += new Vector3(
-				this.MovementSpeed * x * Time.deltaTime,
-				this.MovementSpeed * y * Time.deltaTime
+			this.rgbd2d.MovePosition(
+				this.transform.position + new Vector3(
+					this.MovementSpeed * x * Time.deltaTime,
+					this.MovementSpeed * y * Time.deltaTime
+				)
 			);
 		}
 	}

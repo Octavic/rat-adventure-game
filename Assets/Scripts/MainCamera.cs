@@ -30,7 +30,7 @@ public class MainCamera : MonoBehaviour
 	}
 
 	// Update is called once per frame
-	void Update()
+	void FixedUpdate()
 	{
 		var focusObjPosition = FocusObject.transform.position;
 		this.transform.position = Vector3.Lerp(
