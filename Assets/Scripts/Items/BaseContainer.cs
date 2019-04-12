@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class BaseContainer : MonoBehaviour, Interactable
+public abstract class BaseContainer : BaseInteractable
 {
 	public Item ItemInSlot { get; private set; }
 
@@ -12,13 +12,6 @@ public abstract class BaseContainer : MonoBehaviour, Interactable
 			return this.ItemInSlot != null;
 		}
 	}
-
-	public bool IsEnabled()
-	{
-		return true;
-	}
-
-	public abstract void OnInteract();
 
 	public virtual Item TryPlaceItem(Item item)
 	{

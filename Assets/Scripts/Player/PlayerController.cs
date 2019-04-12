@@ -43,6 +43,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void FixedUpdate()
 	{
+		#region Handles movement
 		if (this.autoMoveTimeLeft > 0)
 		{
 			this.transform.position = Vector3.Lerp(
@@ -80,6 +81,20 @@ public class PlayerController : MonoBehaviour
 					this.MovementSpeed * y * Time.deltaTime
 				)
 			);
+		}
+		#endregion
+
+		if (Input.GetKeyDown(KeyCode.E))
+		{
+			var curPos = this.transform.position;
+			foreach(var interactable in GameObject.FindObjectsOfType<BaseInteractable>())
+			{
+				var distance = (interactable.transform.position - curPos).magnitude;
+				if(distance < interactable.InteractionDistance)
+				{
+					interactable.OnInteract();
+				}	
+			}
 		}
 	}
 }
