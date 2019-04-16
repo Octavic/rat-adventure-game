@@ -3,5 +3,10 @@ using System.Collections;
 
 public enum ItemNames 
 {
-	Ladder
+	Ladder,
+	Needle,
+	EmptyBalloon,
+	OxygenBalloon,
+	HydrogenBalloon,
+	DangerousBalloon
 }
