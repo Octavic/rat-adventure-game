@@ -2,5 +2,8 @@
 {
 	Hydrogen,
 	Oxygen,
-	Carbon
+	Carbon,
+	Iron,
+	Silicon,
+	Aluminum
 }

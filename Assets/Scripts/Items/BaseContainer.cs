@@ -3,20 +3,29 @@ using System.Collections;
 
 public abstract class BaseContainer : BaseInteractable
 {
-	public Item ItemInSlot { get; private set; }
+	public ContainerUI UIObject;
 
-	public bool IsEmpty
+	protected override void OnEnterRange()
 	{
-		get
-		{
-			return this.ItemInSlot != null;
-		}
+		this.UIObject.gameObject.SetActive(true);
+		this.UIObject.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
+		base.OnEnterRange();
+	}
+	protected override void OnLeaveRange()
+	{
+		this.UIObject.gameObject.SetActive(false);
+		base.OnLeaveRange();
 	}
 
-	public virtual Item TryPlaceItem(Item item)
+	protected override void Update()
 	{
-		var oldItem = this.ItemInSlot;
-		this.ItemInSlot = item;
-		return oldItem;
+		if (this.UIObject.gameObject.activeInHierarchy)
+		{
+			var oldPosition = this.UIObject.transform.position;
+			var newPosition = Camera.main.WorldToScreenPoint(this.transform.position);
+			this.UIObject.transform.position = Vector3.Lerp(oldPosition, newPosition, 0.2f);
+		}
+
+		base.Update();
 	}
 }

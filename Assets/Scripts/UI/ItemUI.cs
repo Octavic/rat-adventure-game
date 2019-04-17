@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Item : MonoBehaviour
+public class ItemUI : MonoBehaviour
 {
-	public ItemNames ItemName;
+	public ItemNames Name;
 
 	// Use this for initialization
 	void Start()
