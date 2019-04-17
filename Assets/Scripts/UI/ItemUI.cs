@@ -3,8 +3,8 @@ using System.Collections;
 
 public class ItemUI : MonoBehaviour
 {
-
 	public ItemNames Name;
+
 	// Use this for initialization
 	void Start()
 	{

@@ -21,7 +21,9 @@ public abstract class BaseContainer : BaseInteractable
 	{
 		if (this.UIObject.gameObject.activeInHierarchy)
 		{
-			this.UIObject.transform.position = Camera.main.WorldToScreenPoint(this.transform.position);
+			var oldPosition = this.UIObject.transform.position;
+			var newPosition = Camera.main.WorldToScreenPoint(this.transform.position);
+			this.UIObject.transform.position = Vector3.Lerp(oldPosition, newPosition, 0.2f);
 		}
 
 		base.Update();
