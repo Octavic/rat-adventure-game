@@ -1,19 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class ItemUI : MonoBehaviour
+public class ItemUI : BaseInventoryEntity
 {
 	public ItemNames Name;
-
-	// Use this for initialization
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
 }

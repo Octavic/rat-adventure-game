@@ -106,7 +106,7 @@ public class InputController : MonoBehaviour
 				{
 					this.SourceSlot.PlaceItem(replacedItem);
 				}
-				hoveringSlot.PlaceItem(this.HoldingItem);
+				hoveringSlot.PlaceItem(this.HoldingItem);	
 
 				this.ResetHolding();
 			}
