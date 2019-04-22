@@ -43,6 +43,11 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void FixedUpdate()
 	{
+		if (BasePromptUI.ActivePrompt != null)
+		{
+			return;
+		}
+
 		#region Handles movement
 		if (this.autoMoveTimeLeft > 0)
 		{
@@ -90,7 +95,7 @@ public class PlayerController : MonoBehaviour
 			foreach(var interactable in GameObject.FindObjectsOfType<BaseInteractable>())
 			{
 				var distance = (interactable.transform.position - curPos).magnitude;
-				if(distance < interactable.InteractionDistance)
+				if( distance < interactable.InteractionDistance)
 				{
 					interactable.OnInteract();
 				}	

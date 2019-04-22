@@ -10,9 +10,23 @@ public class MessageBoard : BaseInteractable
 {
 	public List<string> Messages;
 
+	private static Canvas MainCanvas
+	{
+		get
+		{
+			if (_mainCanvs == null)
+			{
+				_mainCanvs = GameObject.FindObjectOfType<Canvas>();
+			}
+			return _mainCanvs;
+		}
+	}
+	private static Canvas _mainCanvs;
+
 	public override void OnInteract()
 	{
-		Debug.Log(Messages[0]);
+		var newStaticPrompt = Instantiate(PrefabManager.CurrentInstance.StaticPromptPrefab, MainCanvas.transform);
+		newStaticPrompt.Messages = this.Messages;
+		newStaticPrompt.Activate();
 	}
-
 }

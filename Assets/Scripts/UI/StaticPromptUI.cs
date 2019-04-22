@@ -14,10 +14,9 @@ public class StaticPromptUI : BasePromptUI
 	/// </summary>
 	private int messageIndex = 0;
 
-	protected override void Start()
+	public void Activate()
 	{
 		this.PlayMessage(this.Messages[0]);
-		base.Start();
 	}
 
 	protected override void OnCurrentMessageEnd()
