@@ -43,7 +43,7 @@ public class PlayerController : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void FixedUpdate()
 	{
-		if (BasePromptUI.ActivePrompt != null)
+		if (DialogueUI.ActivePrompt != null)
 		{
 			return;
 		}

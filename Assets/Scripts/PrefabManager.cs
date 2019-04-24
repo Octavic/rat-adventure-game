@@ -16,5 +16,5 @@ public class PrefabManager : MonoBehaviour
 	}
 	private static PrefabManager _currentInstance;
 
-	public StaticPromptUI StaticPromptPrefab;
+	public DialogueUI PlayerPrompt;
 }
