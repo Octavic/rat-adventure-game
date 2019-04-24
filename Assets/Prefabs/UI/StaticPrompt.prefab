@@ -88,7 +88,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e9e848ccb3dbd74448907b3a0cdfee03, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  CrawSpeed: 20
+  CrawlSpeed: 40
   TextBox: {fileID: 9132785137858054462}
   Messages: []
 --- !u!1 &9132785137858054456

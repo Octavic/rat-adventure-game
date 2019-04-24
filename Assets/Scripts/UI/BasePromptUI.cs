@@ -7,7 +7,7 @@ public abstract class BasePromptUI : MonoBehaviour
 	/// <summary>
 	/// How fast the text scrolls by
 	/// </summary>
-	public float CrawSpeed;
+	public float CrawlSpeed;
 
 	/// <summary>
 	/// The text box component
@@ -76,14 +76,14 @@ public abstract class BasePromptUI : MonoBehaviour
 	// Update is called once per frame
 	protected virtual void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.Space))
+		if (Input.GetKeyUp(KeyCode.Space))
 		{
 			this.OnPlayerPressSkip();
 		}
 
 		if (this.IsScrolling)
 		{
-			this.currentCharIndex += this.CrawSpeed * Time.deltaTime;
+			this.currentCharIndex += this.CrawlSpeed * Time.deltaTime;
 			this.TextBox.text = this.CurrentMessage.Substring(0, (int)this.currentCharIndex);
 		}
 	}

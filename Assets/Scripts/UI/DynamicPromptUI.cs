@@ -1,27 +1,31 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 using System.Collections.Generic;
 using System;
 
-public class DynamicPromptUI : MonoBehaviour
+public class DynamicPromptUI : BasePromptUI
 {
-	public List<DynamicMessage> Messages;
+	public List<Text> OptionTextBoxes;
+
+	public Dictionary<DialogueNames, DynamicDialogue> Dialogues;
+	public DynamicDialogue CurrentDialogue { get; private set; }
 
 	[Serializable]
-	public class DynamicMessageOption
+	public struct DynamicDialogueOption
 	{
-		public string Option;
-		public string NextMessageName;
-		public string EventEmitted;
+		public string OptionMessage;
+		public DialogueNames NextDialogue;
+		public DialogueEvents EventEmitted;
 	}
 
 	[Serializable]
-	public class DynamicMessage
+	public struct DynamicDialogue
 	{
 		/// <summary>
-		/// A unique identifier to 
+		/// A unique identifier for this dialogue
 		/// </summary>
-		public string Name;
+		public DialogueNames Name;
 
 		/// <summary>
 		/// The actual message itself
@@ -31,17 +35,31 @@ public class DynamicPromptUI : MonoBehaviour
 		/// <summary>
 		/// The list  of options that the player can choose from
 		/// </summary>
-		public List<DynamicMessageOption> Options;
+		public List<DynamicDialogueOption> Options;
 	}
 
-	// Use this for initialization
-	void Start()
+	public void PlayDialogue(DialogueNames dialogueName)
 	{
+		DynamicDialogue target;
+		if (!this.Dialogues.TryGetValue(dialogueName, out target))
+		{
+			Debug.LogError("Dialogue not found: " + dialogueName.ToString());
+		}
 
+		this.CurrentDialogue = target;
+		this.PlayMessage(this.CurrentDialogue.Message);
 	}
 
-	// Update is called once per frame
-	void Update()
+	protected override void OnCurrentMessageEnd()
+	{
+		for (int i = 0; i < this.CurrentDialogue.Options.Count; i++)
+		{
+			var option = this.CurrentDialogue.Options[i];
+
+		}
+	}
+
+	public void OnSelectOption()
 	{
 
 	}
