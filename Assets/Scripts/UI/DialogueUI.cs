@@ -107,6 +107,8 @@ public class DialogueUI : MonoBehaviour
 		}
 	}
 
+	private bool isOptionsReady = false;
+
 	/// <summary>
 	/// The index of where the char is at during scroll
 	/// </summary>
@@ -151,6 +153,8 @@ public class DialogueUI : MonoBehaviour
 
 		// Construct valid options
 		this.ValidOptions = new List<DialogueOptionUI>();
+
+		// Loop through all available options and display valid ones, while hiding the rest
 		for (int i = 0; i < 4; i++)
 		{
 			if (i < targetDialogue.Options.Count)
@@ -170,11 +174,13 @@ public class DialogueUI : MonoBehaviour
 	private void OnPlayerChangeSelection(Directions direction)
 	{
 		int nextOption;
+		// No where to go
 		if (!Neighbors[this.currentOptionIndex].TryGetValue(direction, out nextOption))
 		{
 			return;
 		}
 
+		// Check if next position is a valid option
 		if (nextOption < this.ValidOptions.Count)
 		{
 			this.ValidOptions[nextOption].OnSelect();
@@ -195,42 +201,48 @@ public class DialogueUI : MonoBehaviour
 		}
 	}
 
+
 	/// <summary>
 	/// Called when the player hits J or space
 	/// </summary>
-	private void OnPlayerPressSkip()
+	private void OnPlayerInput()
 	{
+		// Text is still scrolling
 		if (this.IsScrolling)
 		{
-			if (!this.canSkip)
+			if (this.canSkip)
 			{
-				return;
+				this.TextBox.text = this.CurrentMessage;
+				this.currentCharIndex = this.CurrentMessage.Length;
 			}
+			return;
+		}
 
-			this.TextBox.text = this.CurrentMessage;
-			this.currentCharIndex = this.CurrentMessage.Length;
+		// If there are more messages to be played before we decide end/show options
+		if (this.MessageIndex < this.CurrentDialogue.Messages.Count - 1)
+		{
+			// Start new message
+			this.MessageIndex++;
+			this.currentCharIndex = 0;
+			StartCoroutine(this.StartSkipCooldown(this.SkipCooldown));
+			return;
+		}
+
+		// Reached the end of messages
+		if (this.ValidOptions.Count == 0)
+		{
+			// No options, done
+			Destroy(this.gameObject);
+			return;
+		}
+
+		if (!this.isOptionsReady)
+		{
+			StartCoroutine(this.ShowOptions());
 		}
 		else
 		{
-			if (this.MessageIndex < this.CurrentDialogue.Messages.Count - 1)
-			{
-				// Start new message
-				this.MessageIndex++;
-				this.currentCharIndex = 0;
-				StartCoroutine(this.StartSkipCooldown(this.SkipCooldown));
-			}
-			else
-			{
-				// Reached the end of messages
-				if (this.ValidOptions.Count > 0)
-				{
-					StartCoroutine(this.ShowOptions());
-				}
-				else
-				{
-					Destroy(this.gameObject);
-				}
-			}
+			this.OnPlayerChooseSelection();
 		}
 	}
 
@@ -245,6 +257,7 @@ public class DialogueUI : MonoBehaviour
 		}
 
 		this.ValidOptions[0].OnSelect();
+		this.isOptionsReady = true;
 	}
 
 	// Update is called once per frame
@@ -252,7 +265,7 @@ public class DialogueUI : MonoBehaviour
 	{
 		if (Input.GetKeyUp(KeyCode.E))
 		{
-			this.OnPlayerPressSkip();
+			this.OnPlayerInput();
 		}
 
 		if (Input.GetKeyDown(KeyCode.W))
@@ -270,11 +283,6 @@ public class DialogueUI : MonoBehaviour
 		else if (Input.GetKeyDown(KeyCode.D))
 		{
 			this.OnPlayerChangeSelection(Directions.Right);
-		}
-
-		if (Input.GetKeyDown(KeyCode.Space))
-		{
-			this.OnPlayerChooseSelection();
 		}
 
 		if (this.IsScrolling)
