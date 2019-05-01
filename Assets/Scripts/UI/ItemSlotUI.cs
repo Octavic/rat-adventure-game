@@ -5,6 +5,25 @@ public class ItemSlotUI : MonoBehaviour
 {
 	public ItemUI CurrentItem;
 
+	public GameObject SelectionBoarder;
+
+	public static ItemSlotUI CurrentlySelected { get; private set; }
+
+	public void OnSelect()
+	{
+		if (CurrentlySelected != null)
+		{
+			CurrentlySelected.OnDeselect();
+		}
+
+		this.SelectionBoarder.SetActive(true);
+		CurrentlySelected = this;
+	}
+	private void OnDeselect()
+	{
+		this.SelectionBoarder.SetActive(false);
+	}
+
 	public void PlaceItem(ItemUI newItem)
 	{
 		this.CurrentItem = newItem;
@@ -30,7 +49,7 @@ public class ItemSlotUI : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-
+		this.SelectionBoarder.SetActive(false);
 	}
 
 	// Update is called once per frame

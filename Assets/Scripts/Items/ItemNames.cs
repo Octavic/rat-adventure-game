@@ -8,5 +8,6 @@ public enum ItemNames
 	EmptyBalloon,
 	OxygenBalloon,
 	HydrogenBalloon,
-	DangerousBalloon
+	DangerousBalloon,
+	MatchStick
 }

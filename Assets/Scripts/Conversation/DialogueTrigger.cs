@@ -26,9 +26,16 @@ public class DialogueTrigger : BaseInteractable, IDialogueEventListener
 	/// <summary>
 	/// Called when the user interacts with this object
 	/// </summary>
-	public override void OnInteract()
+	public override void OnInteractItem(ItemUI holdingItem)
 	{
 		this.PlayDialogue(this.Dialogues[0]);
+	}
+
+	/// <summary>
+	/// Do nothing
+	/// </summary>
+	public override void OnInteractElementalizer(Compound currentCompound)
+	{
 	}
 
 	public void OnSelectDialogueOption(DialogueOption option)
