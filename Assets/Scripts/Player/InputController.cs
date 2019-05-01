@@ -112,7 +112,12 @@ public class InputController : MonoBehaviour
 			}
 			else
 			{
-				// Is releasing over item slot
+				// Is releasing over same slot
+				if (this.SourceSlot == hoveringSlot)
+				{
+					this.SourceSlot.OnClick();
+				}
+				// Is releasing over another slot
 				this.SourceSlot.RemoveItem();
 				var replacedItem = hoveringSlot.RemoveItem();
 				if(replacedItem != null)

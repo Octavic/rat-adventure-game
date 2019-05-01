@@ -9,8 +9,17 @@ public class ItemSlotUI : MonoBehaviour
 
 	public static ItemSlotUI CurrentlySelected { get; private set; }
 
-	public void OnSelect()
+	/// <summary>
+	/// Called when the user simply clicks on the item slot
+	/// </summary>
+	public void OnClick()
 	{
+		if (CurrentlySelected == this)
+		{
+			CurrentlySelected = null;
+			this.OnDeselect();
+		}
+
 		if (CurrentlySelected != null)
 		{
 			CurrentlySelected.OnDeselect();
