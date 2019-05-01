@@ -9,5 +9,6 @@ public class SimpleChest : BaseContainer
 
 	public override void OnInteractElementalizer(Compound currentCompound)
 	{
+
 	}
 }
