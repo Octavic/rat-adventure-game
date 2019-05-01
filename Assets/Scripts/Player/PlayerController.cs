@@ -104,7 +104,7 @@ public class PlayerController : MonoBehaviour
 				this.wasFacing = newFacing;
 			}
 
-			this.animatorComp.SetBool(PlayerAnimationParams.IsMoving, x != 0 && y != 0);
+			this.animatorComp.SetBool(PlayerAnimationParams.IsMoving, x != 0 || y != 0);
 
 			this.rgbdComp.MovePosition(
 				this.transform.position + new Vector3(
