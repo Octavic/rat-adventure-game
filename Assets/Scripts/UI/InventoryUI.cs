@@ -14,17 +14,6 @@ public class InventoryUI : MonoBehaviour
 			return _currentInstance;
 		}
 	}
+
 	private static InventoryUI _currentInstance;
-
-	// Use this for initialization
-	void Start()
-	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
-	}
 }

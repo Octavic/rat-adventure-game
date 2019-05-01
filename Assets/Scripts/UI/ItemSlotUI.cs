@@ -3,6 +3,8 @@ using System.Collections;
 
 public class ItemSlotUI : MonoBehaviour
 {
+	public static ItemSlotUI CurrentlySelected { get; private set; }
+
 	public ItemUI CurrentItem;
 
 	public void PlaceItem(ItemUI newItem)

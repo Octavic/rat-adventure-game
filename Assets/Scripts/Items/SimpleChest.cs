@@ -3,7 +3,11 @@ using System.Collections;
 
 public class SimpleChest : BaseContainer
 {
-	public override void OnInteract()
+	public override void OnInteractItem(ItemUI holdingItem)
+	{
+	}
+
+	public override void OnInteractElementalizer(Compound currentCompound)
 	{
 	}
 }

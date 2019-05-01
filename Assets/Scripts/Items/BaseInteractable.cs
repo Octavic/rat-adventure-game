@@ -26,7 +26,8 @@ public abstract class BaseInteractable : MonoBehaviour
 		return (PlayerController.CurrentInstance.transform.position - this.transform.position).magnitude < this.InteractionDistance;
 	}
 
-	public abstract void OnInteract();
+	public abstract void OnInteractItem(ItemUI holdingItem);
+	public abstract void OnInteractElementalizer(Compound currentCompound);
 
 	protected virtual void OnEnterRange()
 	{
