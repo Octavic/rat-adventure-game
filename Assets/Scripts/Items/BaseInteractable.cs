@@ -44,7 +44,6 @@ public abstract class BaseInteractable : MonoBehaviour
 		this.sprite = this.GetComponent<SpriteRenderer>();
 	}
 
-
 	// Update is called once per frame
 	protected virtual void Update()
 	{

@@ -120,12 +120,16 @@ public class PlayerController : MonoBehaviour
 		var isInteractElementalizer = Input.GetKeyDown(KeyCode.E);
 		if (isInteractElementalizer || isInteractItem)
 		{
+			// Find the interactable items
 			var curPos = this.transform.position;
 			foreach (var interactable in GameObject.FindObjectsOfType<BaseInteractable>())
 			{
 				var distance = (interactable.transform.position - curPos).magnitude;
+
+				// Check to see if player is within distancec of the interactable
 				if (distance < interactable.InteractionDistance)
 				{
+					// Can only interact with one way at a time
 					if (isInteractItem)
 					{
 						interactable.OnInteractItem(ItemSlotUI.CurrentlySelected.CurrentItem);
