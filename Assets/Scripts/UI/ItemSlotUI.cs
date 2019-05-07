@@ -18,6 +18,7 @@ public class ItemSlotUI : MonoBehaviour
 		{
 			CurrentlySelected = null;
 			this.OnDeselect();
+			return;
 		}
 
 		if (CurrentlySelected != null)

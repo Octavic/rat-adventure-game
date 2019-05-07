@@ -3,12 +3,32 @@ using System.Collections;
 
 public class SimpleChest : BaseContainer
 {
-	public override void OnInteractItem(ItemUI holdingItem)
+	protected override void Start()
 	{
+		var currentItem = this.TargetItem;
+		this.interactableUI.SetMessage(currentItem != null ? "Take " + currentItem.ItemName : null, true);
+		this.interactableUI.SetMessage(null,  false);
+
+		base.Start();
+	}
+
+	public override bool OnInteractItem(ItemUI holdingItem)
+	{
+		var currentItem = this.TargetItem;
+		if (currentItem != null)
+		{
+			bool canAdd = InventoryUI.CurrentInstance.TryAddItem(currentItem);
+			if (canAdd)
+			{
+				this.interactableUI.SetMessage(null, true);
+				this.TargetItem = null;
+			}
+		}
+
+		return false;
 	}
 
 	public override void OnInteractElementalizer(Compound currentCompound)
 	{
-
 	}
 }

@@ -16,7 +16,7 @@ public class DialogueTrigger : BaseInteractable, IDialogueEventListener
 	/// <summary>
 	/// The current prompt
 	/// </summary>
-	private DialogueUI UI;
+	private DialogueUI DialogueUI;
 
 	/// <summary>
 	/// Dialogues hashed with their name
@@ -26,9 +26,10 @@ public class DialogueTrigger : BaseInteractable, IDialogueEventListener
 	/// <summary>
 	/// Called when the user interacts with this object
 	/// </summary>
-	public override void OnInteractItem(ItemUI holdingItem)
+	public override bool OnInteractItem(ItemUI holdingItem)
 	{
 		this.PlayDialogue(this.Dialogues[0]);
+		return false;
 	}
 
 	/// <summary>
@@ -45,7 +46,7 @@ public class DialogueTrigger : BaseInteractable, IDialogueEventListener
 		var nextDialogue = option.NextDialogue;
 		if (string.IsNullOrEmpty(nextDialogue))
 		{
-			Destroy(this.UI.gameObject);
+			Destroy(this.DialogueUI.gameObject);
 		}
 		else
 		{
@@ -71,19 +72,23 @@ public class DialogueTrigger : BaseInteractable, IDialogueEventListener
 
 			this.HashedDialogues[dialogueName] = dialogue;
 		}
+
+		this.interactableUI.SetMessage("Talk", true);
+		this.interactableUI.SetMessage(null, false);
+
 		base.Start();
 	}
 
 	private void PlayDialogue(Dialogue dialogue)
 	{
-		if (this.UI != null)
+		if (this.DialogueUI != null)
 		{
-			Destroy(this.UI.gameObject);
-			this.UI.gameObject.SetActive(false);
+			Destroy(this.DialogueUI.gameObject);
+			this.DialogueUI.gameObject.SetActive(false);
 		}
 
-		this.UI = Instantiate(PrefabManager.CurrentInstance.PlayerPrompt, InputController.MainCanvas.transform);
-		this.UI.Listeners.Add(this);
-		this.UI.PlayDialogue(dialogue);
+		this.DialogueUI = Instantiate(PrefabManager.CurrentInstance.PlayerPrompt, InputController.MainCanvas.transform);
+		this.DialogueUI.Listeners.Add(this);
+		this.DialogueUI.PlayDialogue(dialogue);
 	}
 }

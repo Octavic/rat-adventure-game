@@ -9,6 +9,8 @@ public class MainCamera : MonoBehaviour
 
 	public GameObject FocusObject { get; set; }
 
+	public static Camera CameraComp;
+
 	public static MainCamera CurrentInstance
 	{
 		get
@@ -26,7 +28,7 @@ public class MainCamera : MonoBehaviour
 	// Use this for initialization
 	void Start()
 	{
-
+		CameraComp = this.GetComponent<Camera>();
 	}
 
 	// Update is called once per frame

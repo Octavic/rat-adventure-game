@@ -38,6 +38,7 @@ public class InputController : MonoBehaviour
 	{
 		//Set up the new Pointer Event
 		pointerEventData = new PointerEventData(eventSystem);
+
 		//Set the Pointer Event Position to that of the mouse position
 		pointerEventData.position = Input.mousePosition;
 
@@ -76,58 +77,59 @@ public class InputController : MonoBehaviour
 	// Update is called once per frame
 	protected void Update()
 	{
-		var mousePosition = Input.mousePosition;
-		if (this.HoldingItem != null)
-		{
-			this.HoldingItem.transform.position = mousePosition;
-		}
-
+		//var mousePosition = Input.mousePosition;
+		//if (this.HoldingItem != null)
+		//{
+		//	this.HoldingItem.transform.position = mousePosition;
+		//}
+		
 		// On click
 		if (Input.GetMouseButtonDown(0))
 		{
 			var itemSlot = this.GetMouseOverItemSlot();
 			if (itemSlot != null && itemSlot.CurrentItem != null)
 			{
-				this.HoldingItem = itemSlot.CurrentItem;
-				this.HoldingItem.transform.parent = this.transform;
-				this.SourceSlot = itemSlot;
+				itemSlot.OnClick();
+				//this.HoldingItem = itemSlot.CurrentItem;
+				//this.HoldingItem.transform.SetParent(this.transform);
+				//this.SourceSlot = itemSlot;
 			}
 		}
 
 		// On release
-		if (Input.GetMouseButtonUp(0))
-		{
-			if (this.HoldingItem == null)
-			{
-				// Release when holding nothing, so do nothing
-				return;
-			}
+		//if (Input.GetMouseButtonUp(0))
+		//{
+		//	if (this.HoldingItem == null)
+		//	{
+		//		// Release when holding nothing, so do nothing
+		//		return;
+		//	}
 
-			var hoveringSlot = this.GetMouseOverItemSlot();
-			if (hoveringSlot == null)
-			{
-				// Not releasing over item slot, reset
-				this.SourceSlot.ResetItem();
-				this.ResetHolding();
-			}
-			else
-			{
-				// Is releasing over same slot
-				if (this.SourceSlot == hoveringSlot)
-				{
-					this.SourceSlot.OnClick();
-				}
-				// Is releasing over another slot
-				this.SourceSlot.RemoveItem();
-				var replacedItem = hoveringSlot.RemoveItem();
-				if(replacedItem != null)
-				{
-					this.SourceSlot.PlaceItem(replacedItem);
-				}
-				hoveringSlot.PlaceItem(this.HoldingItem);	
+		//	var hoveringSlot = this.GetMouseOverItemSlot();
+		//	if (hoveringSlot == null)
+		//	{
+		//		// Not releasing over item slot, reset
+		//		this.SourceSlot.ResetItem();
+		//		this.ResetHolding();
+		//	}
+		//	else
+		//	{
+		//		// Is releasing over same slot
+		//		if (this.SourceSlot == hoveringSlot)
+		//		{
+		//			this.SourceSlot.OnClick();
+		//		}
+		//		// Is releasing over another slot
+		//		this.SourceSlot.RemoveItem();
+		//		var replacedItem = hoveringSlot.RemoveItem();
+		//		if (replacedItem != null)
+		//		{
+		//			this.SourceSlot.PlaceItem(replacedItem);
+		//		}
+		//		hoveringSlot.PlaceItem(this.HoldingItem);
 
-				this.ResetHolding();
-			}
-		}
+		//		this.ResetHolding();
+		//	}
+		//}
 	}
 }

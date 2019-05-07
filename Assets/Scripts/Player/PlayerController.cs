@@ -131,7 +131,17 @@ public class PlayerController : MonoBehaviour
 					// Can only interact with one way at a time
 					if (isInteractItem)
 					{
-						interactable.OnInteractItem(ItemSlotUI.CurrentlySelected.CurrentItem);
+						var currentSelected = ItemSlotUI.CurrentlySelected;
+						bool shouldUseUp = interactable.OnInteractItem(currentSelected == null ? null : currentSelected.CurrentItem);
+
+						if (shouldUseUp)
+						{
+							var removedItem = currentSelected.RemoveItem();
+							if (removedItem != null)
+							{
+								Destroy(removedItem.gameObject);
+							}
+						}
 					}
 					else if (isInteractElementalizer)
 					{

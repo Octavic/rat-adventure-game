@@ -5,17 +5,20 @@ public class Flammable : BaseInteractable
 {
 	public bool IsOnFire { get; private set; }
 
-	public override void OnInteractItem(ItemUI holdingItem)
+	public override bool OnInteractItem(ItemUI holdingItem)
 	{
+		// If not holding any items
 		if (holdingItem == null)
 		{
-			return;
+			return false;
 		}
 
 		if (holdingItem.ItemName == ItemNames.MatchStick && !this.IsOnFire)
 		{
 			this.OnSetFire();
 		}
+
+		return true;
 	}
 
 	public override void OnInteractElementalizer(Compound currentCompound)
