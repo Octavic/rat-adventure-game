@@ -44,7 +44,7 @@ public class Flammable : BaseInteractable
 		this.interactableUI.SetMessage(null, false);
 	}
 
-	protected override void OnEnterRange()
+	private void UpdateText()
 	{
 		var currentSelected = ItemSlotUI.CurrentlySelected;
 		var isSelectingLighter = currentSelected != null && currentSelected.CurrentItem.ItemName == ItemNames.Lighter;
@@ -54,12 +54,17 @@ public class Flammable : BaseInteractable
 		var isUsingWater = currentCompound != null && currentCompound.Name == CompoundNames.Water;
 		this.interactableUI.SetMessage(isUsingWater && this.IsOnFire ? "Extinguish" : null, false);
 
-		base.OnEnterRange();
 	}
 
 	protected override void Start()
 	{
 		this.OnExtinguishFire();
 		base.Start();
+	}
+
+	protected override void Update()
+	{
+		this.UpdateText();
+		base.Update();
 	}
 }
