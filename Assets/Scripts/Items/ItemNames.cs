@@ -9,5 +9,5 @@ public enum ItemNames
 	OxygenBalloon,
 	HydrogenBalloon,
 	DangerousBalloon,
-	MatchStick
+	Lighter
 }

@@ -30,6 +30,7 @@ public class InventoryUI : MonoBehaviour
 			if(slot.CurrentItem == null)
 			{
 				slot.PlaceItem(newItem);
+				newItem.gameObject.SetActive(true);
 				return true;
 			}
 		}

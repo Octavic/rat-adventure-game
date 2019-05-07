@@ -3,45 +3,48 @@ using System.Collections;
 
 public abstract class BaseInteractable : MonoBehaviour
 {
-	public Color NormalColor;
-	public Color HighlightColor;
+	/// <summary>
+	/// UI related
+	/// </summary>
+	public InteractableUI interactableUI;
 
 	public float InteractionDistance;
 
-	protected SpriteRenderer sprite;
 	protected bool WasInRange { get; private set; }
-
-	public virtual bool IsEnabled()
-	{
-		if (!this.IsInRange())
-		{
-			return false;
-		}
-
-		return true;
-	}
 
 	public bool IsInRange()
 	{
 		return (PlayerController.CurrentInstance.transform.position - this.transform.position).magnitude < this.InteractionDistance;
 	}
 
-	public abstract void OnInteractItem(ItemUI holdingItem);
+	public bool IsInteractable { get; protected set; }
+
+	/// <summary>
+	/// Interacts with this with the holding item
+	/// </summary>
+	/// <param name="holdingItem">The item  that the player is currently holding</param>
+	/// <returns>If the item is used up</returns>
+	public abstract bool OnInteractItem(ItemUI holdingItem);
+
+	/// <summary>
+	/// Interacts with this with the elementalizer
+	/// </summary>
+	/// <param name="currentCompound">The current compound in use</param>
 	public abstract void OnInteractElementalizer(Compound currentCompound);
 
 	protected virtual void OnEnterRange()
 	{
-		this.sprite.color = HighlightColor;
+		this.interactableUI.Target = this;
+		this.interactableUI.gameObject.SetActive(true);
 	}
 	protected virtual void OnLeaveRange()
 	{
-		this.sprite.color = NormalColor;
+		this.interactableUI.gameObject.SetActive(false);
 	}
 
 	// Use this for initialization
 	protected virtual void Start()
 	{
-		this.sprite = this.GetComponent<SpriteRenderer>();
 	}
 
 	// Update is called once per frame
