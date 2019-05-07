@@ -4,8 +4,6 @@ using System.Collections;
 
 public class InteractableUI : MonoBehaviour
 {
-	public Text TextBox;
-
 	public InteractPromptUI ItemPromptUI;
 	public InteractPromptUI ElementalizerUI;
 
