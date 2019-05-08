@@ -23,7 +23,7 @@ public class InteractableUI : MonoBehaviour
 		}
 	}
 
-	private void AlignWithTarget()
+	public void AlignWithTarget()
 	{
 		this.transform.position = MainCamera.CameraComp.WorldToScreenPoint(this.Target.transform.position);
 	}

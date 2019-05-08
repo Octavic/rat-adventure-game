@@ -36,6 +36,7 @@ public abstract class BaseInteractable : MonoBehaviour
 	{
 		this.interactableUI.Target = this;
 		this.interactableUI.gameObject.SetActive(true);
+		this.interactableUI.AlignWithTarget();
 	}
 	protected virtual void OnLeaveRange()
 	{
