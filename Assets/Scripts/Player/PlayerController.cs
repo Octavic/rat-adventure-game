@@ -35,7 +35,7 @@ public class PlayerController : MonoBehaviour
 	/// <summary>
 	/// The animator param that the player was moving in
 	/// </summary>
-	private string wasFacing;
+	private string wasFacing = PlayerAnimationParams.FaceDown;
 
 	public void AutoMoveTo(Vector3 autoMoveGoal, float time = 1.0f)
 	{

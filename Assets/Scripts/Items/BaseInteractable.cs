@@ -4,10 +4,19 @@ using System.Collections;
 public abstract class BaseInteractable : MonoBehaviour
 {
 	/// <summary>
+	/// Colors for being in range/not in range to show that this item is interactable
+	/// </summary>
+	public Color InRangeColor;
+	public Color OutOfRangeColor;
+
+	/// <summary>
 	/// UI related
 	/// </summary>
 	public InteractableUI interactableUI;
 
+	/// <summary>
+	/// How far away the player  must be to trigger being in range
+	/// </summary>
 	public float InteractionDistance;
 
 	protected bool WasInRange { get; private set; }
@@ -18,6 +27,8 @@ public abstract class BaseInteractable : MonoBehaviour
 	}
 
 	public bool IsInteractable { get; protected set; }
+
+	protected SpriteRenderer spriteComp;
 
 	/// <summary>
 	/// Interacts with this with the holding item
@@ -32,20 +43,25 @@ public abstract class BaseInteractable : MonoBehaviour
 	/// <param name="currentCompound">The current compound in use</param>
 	public abstract void OnInteractElementalizer(Compound currentCompound);
 
-	protected virtual void OnEnterRange()
+	protected virtual void OnPlayerEnterRange()
 	{
 		this.interactableUI.Target = this;
 		this.interactableUI.gameObject.SetActive(true);
 		this.interactableUI.AlignWithTarget();
+
+		this.spriteComp.color = this.InRangeColor;
 	}
-	protected virtual void OnLeaveRange()
+	protected virtual void OnPlayerLeaveRange()
 	{
 		this.interactableUI.gameObject.SetActive(false);
+
+		this.spriteComp.color = this.OutOfRangeColor;
 	}
 
 	// Use this for initialization
 	protected virtual void Start()
 	{
+		this.spriteComp = this.GetComponent<SpriteRenderer>();
 	}
 
 	// Update is called once per frame
@@ -54,11 +70,11 @@ public abstract class BaseInteractable : MonoBehaviour
 		var isNowInRange = IsInRange();
 		if (isNowInRange && !this.WasInRange)
 		{
-			this.OnEnterRange();
+			this.OnPlayerEnterRange();
 		}
 		else if (!isNowInRange && this.WasInRange)
 		{
-			this.OnLeaveRange();
+			this.OnPlayerLeaveRange();
 		}
 
 		this.WasInRange = isNowInRange;

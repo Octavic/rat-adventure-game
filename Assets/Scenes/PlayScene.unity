@@ -527,7 +527,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f7f28a272b572b24cb5216ce0e74c711, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 362a34030d91c224f883aae15d0e33bb, type: 3}
   m_Color: {r: 0.6415094, g: 0.6415094, b: 0.6415094, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -586,18 +586,18 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -0.68}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
+    oldSize: {x: 1.65, y: 2.5}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.2, y: 1}
   m_EdgeRadius: 0
 --- !u!95 &411154115
 Animator:
@@ -609,7 +609,7 @@ Animator:
   m_GameObject: {fileID: 411154109}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 67dd2d2783878314d91b3bf33ff3f925, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -1415,8 +1415,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a7ba0e4901a50a45a06a49b6b050f40, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InRangeColor: {r: 1, g: 1, b: 1, a: 1}
+  OutOfRangeColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   interactableUI: {fileID: 717861483}
-  InteractionDistance: 1.2
+  InteractionDistance: 1.5
   TargetItem: {fileID: 508283810}
 --- !u!61 &752333076
 BoxCollider2D:
@@ -1482,7 +1484,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f7f28a272b572b24cb5216ce0e74c711, type: 3}
-  m_Color: {r: 0.3301887, g: 0.21966876, b: 0.1791118, a: 1}
+  m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -2020,7 +2022,7 @@ GameObject:
   - component: {fileID: 1018273359}
   - component: {fileID: 1018273362}
   m_Layer: 0
-  m_Name: Floor
+  m_Name: Wall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2126,6 +2128,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: MessageBoardUI
       objectReference: {fileID: 0}
+    - target: {fileID: 9058255597269117338, guid: 053384429b4375549a5871fa3e7a725d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2184,12 +2191,12 @@ PrefabInstance:
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 255.71
       objectReference: {fileID: 0}
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 206.1
       objectReference: {fileID: 0}
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
@@ -3084,12 +3091,12 @@ PrefabInstance:
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: -235.54
       objectReference: {fileID: 0}
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 10.31
       objectReference: {fileID: 0}
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
@@ -3227,8 +3234,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c69ddeca85807fb45b885558a27be55d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InRangeColor: {r: 1, g: 1, b: 1, a: 1}
+  OutOfRangeColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   interactableUI: {fileID: 1048996714}
-  InteractionDistance: 1.3
+  InteractionDistance: 1.5
   Dialogues:
   - Name: HELLO
     Messages:
@@ -3313,7 +3322,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f7f28a272b572b24cb5216ce0e74c711, type: 3}
-  m_Color: {r: 0.3301887, g: 0.21966876, b: 0.1791118, a: 1}
+  m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3368,8 +3377,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 81effc055ea528041ba59d4ec1b99216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  InRangeColor: {r: 1, g: 1, b: 1, a: 1}
+  OutOfRangeColor: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   interactableUI: {fileID: 1571382683}
-  InteractionDistance: 2
+  InteractionDistance: 1.5
   Flame: {fileID: 632408746}
 --- !u!61 &1766771251
 BoxCollider2D:
@@ -3435,7 +3446,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: f7f28a272b572b24cb5216ce0e74c711, type: 3}
-  m_Color: {r: 0.3301887, g: 0.21966876, b: 0.1791118, a: 1}
+  m_Color: {r: 0.6792453, g: 0.6792453, b: 0.6792453, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -3828,6 +3839,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ChestuI
       objectReference: {fileID: 0}
+    - target: {fileID: 9058255597269117338, guid: 053384429b4375549a5871fa3e7a725d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3886,12 +3902,12 @@ PrefabInstance:
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 0
+      value: 254.95
       objectReference: {fileID: 0}
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 0
+      value: 11.25
       objectReference: {fileID: 0}
     - target: {fileID: 9058255597269117337, guid: 053384429b4375549a5871fa3e7a725d,
         type: 3}
