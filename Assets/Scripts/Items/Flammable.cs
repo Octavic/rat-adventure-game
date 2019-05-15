@@ -24,7 +24,7 @@ public class Flammable : BaseInteractable
 			return;
 		}
 
-		if (currentCompound.Name == CompoundNames.Water && this.IsOnFire)
+		if (currentCompound.CompoundName == CompoundNames.Water && this.IsOnFire)
 		{
 			this.OnExtinguishFire();
 		}
@@ -51,9 +51,8 @@ public class Flammable : BaseInteractable
 		this.interactableUI.SetMessage(isSelectingLighter && !this.IsOnFire ? "Light on fire" : null, true);
 
 		var currentCompound = ElementalizerUI.CurrentInstance.CurrentCompound;
-		var isUsingWater = currentCompound != null && currentCompound.Name == CompoundNames.Water;
+		var isUsingWater = currentCompound != null && currentCompound.CompoundName == CompoundNames.Water;
 		this.interactableUI.SetMessage(isUsingWater && this.IsOnFire ? "Extinguish" : null, false);
-
 	}
 
 	protected override void Start()

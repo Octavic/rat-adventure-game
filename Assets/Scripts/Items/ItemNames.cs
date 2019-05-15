@@ -9,5 +9,6 @@ public enum ItemNames
 	OxygenBalloon,
 	HydrogenBalloon,
 	DangerousBalloon,
-	Lighter
+	Lighter,
+	Meat
 }

@@ -12,6 +12,11 @@ public class SimpleChest : BaseContainer
 		base.Start();
 	}
 
+	protected virtual void OnRemoveItem()
+	{
+
+	}
+
 	public override bool OnInteractItem(ItemUI holdingItem)
 	{
 		var currentItem = this.TargetItem;
@@ -20,6 +25,7 @@ public class SimpleChest : BaseContainer
 			bool canAdd = InventoryUI.CurrentInstance.TryAddItem(currentItem);
 			if (canAdd)
 			{
+				this.OnRemoveItem();
 				this.interactableUI.SetMessage(null, true);
 				this.TargetItem = null;
 			}

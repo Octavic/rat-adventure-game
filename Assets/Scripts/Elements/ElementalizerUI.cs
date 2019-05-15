@@ -24,7 +24,7 @@ public class ElementalizerUI : MonoBehaviour
 			}
 			else
 			{
-				this.CompoundName.text = value.Name.ToString();
+				this.CompoundName.text = value.CompoundName.ToString();
 				this.CompoundFormula.text = value.Formula;
 			}
 		}

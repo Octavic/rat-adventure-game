@@ -17,7 +17,8 @@ public abstract class BaseInteractable : MonoBehaviour
 	/// <summary>
 	/// How far away the player  must be to trigger being in range
 	/// </summary>
-	public float InteractionDistance;
+	[HideInInspector]
+	public float InteractionDistance = 2;
 
 	protected bool WasInRange { get; private set; }
 
