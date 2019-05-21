@@ -116,8 +116,8 @@ public class PlayerController : MonoBehaviour
 		#endregion
 
 		#region Handles interactions
-		var isInteractItem = Input.GetKeyDown(KeyCode.Q);
-		var isInteractElementalizer = Input.GetKeyDown(KeyCode.E);
+		var isInteractItem = Input.GetKeyDown(KeyCode.E);
+		var isInteractElementalizer = Input.GetKeyDown(KeyCode.Q);
 		if (isInteractElementalizer || isInteractItem)
 		{
 			// Find the interactable items
