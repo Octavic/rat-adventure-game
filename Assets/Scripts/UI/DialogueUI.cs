@@ -6,6 +6,11 @@ using System.Collections.Generic;
 public class DialogueUI : MonoBehaviour
 {
 	/// <summary>
+	/// Where to place the portrait
+	/// </summary>
+	public GameObject PortraitSlot;
+
+	/// <summary>
 	/// A collection of what index option + movement would move to what option
 	/// </summary>
 	public static Dictionary<int, Dictionary<Directions, int>> Neighbors = new Dictionary<int, Dictionary<Directions, int>>
@@ -153,6 +158,20 @@ public class DialogueUI : MonoBehaviour
 
 		// Construct valid options
 		this.ValidOptions = new List<DialogueOptionUI>();
+
+		this.PortraitSlot.DestroyAllChildren();
+
+		// Display portraits
+		if (targetDialogue.PortraitPrefab != null)
+		{
+			this.PortraitSlot.SetActive(true);
+			var newPortrait = Instantiate(targetDialogue.PortraitPrefab, this.PortraitSlot.transform);
+			newPortrait.transform.localPosition = new Vector3();
+		}
+		else
+		{
+			this.PortraitSlot.SetActive(false);
+		}
 
 		// Loop through all available options and display valid ones, while hiding the rest
 		for (int i = 0; i < 4; i++)

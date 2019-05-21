@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class Utils
 {
@@ -17,5 +18,13 @@ public static class Utils
 		}
 
 		return result;
+	}
+
+	public static void DestroyAllChildren(this GameObject obj)
+	{
+		for(var i = 0; i < obj.transform.childCount; i++)
+		{
+			GameObject.Destroy(obj.transform.GetChild(0));
+		}
 	}
 }

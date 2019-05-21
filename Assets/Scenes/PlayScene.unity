@@ -3804,7 +3804,9 @@ MonoBehaviour:
   interactableUI: {fileID: 1048996714}
   InteractionDistance: 1.5
   Dialogues:
-  - Name: HELLO
+  - PortraitPrefab: {fileID: 7062524815752548161, guid: bd1dd7b044dcc1f41a1b28e9a5738788,
+      type: 3}
+    Name: HELLO
     Messages:
     - WELCOME TO HELL
     - Do you want a  cup of tea?
@@ -3815,11 +3817,13 @@ MonoBehaviour:
     - OptionMessage: No
       NextDialogue: TEA_NO
       EventEmitted: 0
-  - Name: TEA_YES
+  - PortraitPrefab: {fileID: 0}
+    Name: TEA_YES
     Messages:
     - ENJOY YOUR TEA!
     Options: []
-  - Name: TEA_NO
+  - PortraitPrefab: {fileID: 0}
+    Name: TEA_NO
     Messages:
     - WELL THEN FINE
     Options: []

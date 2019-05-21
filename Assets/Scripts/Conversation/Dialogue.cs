@@ -7,6 +7,11 @@ using System;
 public struct Dialogue
 {
 	/// <summary>
+	/// Prefab for the portrait
+	/// </summary>
+	public GameObject PortraitPrefab;
+
+	/// <summary>
 	/// A unique identifier for this dialogue
 	/// </summary>
 	public string Name;
