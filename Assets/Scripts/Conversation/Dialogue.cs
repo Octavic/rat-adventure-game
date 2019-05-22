@@ -4,22 +4,29 @@ using System.Collections.Generic;
 using System;
 
 [Serializable]
-public struct Dialogue
+public struct DialogueMessage
 {
 	/// <summary>
 	/// Prefab for the portrait
 	/// </summary>
-	public GameObject PortraitPrefab;
+	public GameObject PortraiPrefab;
 
+	/// <summary>
+	/// The actual message itself
+	/// </summary>
+	public string Message;
+}
+
+[Serializable]
+public struct Dialogue
+{
 	/// <summary>
 	/// A unique identifier for this dialogue
 	/// </summary>
 	public string Name;
 
-	/// <summary>
-	/// The actual message itself
-	/// </summary>
-	public List<string> Messages;
+	
+	public List<DialogueMessage> Messages;
 
 	/// <summary>
 	/// The list  of options that the player can choose from

@@ -93,7 +93,7 @@ public class DialogueUI : MonoBehaviour
 	/// <summary>
 	/// The current message that'll go on screen
 	/// </summary>
-	public string CurrentMessage
+	public DialogueMessage CurrentMessage
 	{
 		get
 		{
@@ -108,7 +108,7 @@ public class DialogueUI : MonoBehaviour
 	{
 		get
 		{
-			return this.currentCharIndex < this.CurrentMessage.Length;
+			return this.currentCharIndex < this.CurrentMessage.Message.Length;
 		}
 	}
 
@@ -155,23 +155,10 @@ public class DialogueUI : MonoBehaviour
 		// Initialize index
 		this.MessageIndex = 0;
 		this.currentCharIndex = 0;
+		this.UpdatePortrait();
 
 		// Construct valid options
 		this.ValidOptions = new List<DialogueOptionUI>();
-
-		this.PortraitSlot.DestroyAllChildren();
-
-		// Display portraits
-		if (targetDialogue.PortraitPrefab != null)
-		{
-			this.PortraitSlot.SetActive(true);
-			var newPortrait = Instantiate(targetDialogue.PortraitPrefab, this.PortraitSlot.transform);
-			newPortrait.transform.localPosition = new Vector3();
-		}
-		else
-		{
-			this.PortraitSlot.SetActive(false);
-		}
 
 		// Loop through all available options and display valid ones, while hiding the rest
 		for (int i = 0; i < 4; i++)
@@ -220,6 +207,22 @@ public class DialogueUI : MonoBehaviour
 		}
 	}
 
+	private void UpdatePortrait()
+	{
+		this.PortraitSlot.DestroyAllChildren();
+
+		var targetMessage = this.CurrentDialogue.Messages[this.MessageIndex];
+		if (targetMessage.PortraiPrefab != null)
+		{
+			var newPortrait = Instantiate(targetMessage.PortraiPrefab, this.PortraitSlot.transform);
+			newPortrait.transform.localPosition = new Vector3();
+			this.PortraitSlot.SetActive(true);
+		}
+		else
+		{
+			this.PortraitSlot.SetActive(false);
+		}
+	}
 
 	/// <summary>
 	/// Called when the player hits J or space
@@ -231,8 +234,8 @@ public class DialogueUI : MonoBehaviour
 		{
 			if (this.canSkip)
 			{
-				this.TextBox.text = this.CurrentMessage;
-				this.currentCharIndex = this.CurrentMessage.Length;
+				this.TextBox.text = this.CurrentMessage.Message;
+				this.currentCharIndex = this.CurrentMessage.Message.Length;
 			}
 			return;
 		}
@@ -243,6 +246,8 @@ public class DialogueUI : MonoBehaviour
 			// Start new message
 			this.MessageIndex++;
 			this.currentCharIndex = 0;
+			this.UpdatePortrait();
+
 			StartCoroutine(this.StartSkipCooldown(this.SkipCooldown));
 			return;
 		}
@@ -307,8 +312,8 @@ public class DialogueUI : MonoBehaviour
 		if (this.IsScrolling)
 		{
 			this.currentCharIndex += this.CrawlSpeed * Time.deltaTime;
-			this.TextBox.text = this.CurrentMessage.Substring(0, (int)this.currentCharIndex);
-		}
+			this.TextBox.text = this.CurrentMessage.Message.Substring(0, (int)this.currentCharIndex);
+		} 
 	}
 
 	private IEnumerator StartSkipCooldown(float seconds)

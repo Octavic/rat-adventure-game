@@ -4,12 +4,6 @@ using System.Collections;
 public abstract class BaseInteractable : MonoBehaviour
 {
 	/// <summary>
-	/// Colors for being in range/not in range to show that this item is interactable
-	/// </summary>
-	public Color InRangeColor;
-	public Color OutOfRangeColor;
-
-	/// <summary>
 	/// UI related
 	/// </summary>
 	public InteractableUI interactableUI;
@@ -17,8 +11,7 @@ public abstract class BaseInteractable : MonoBehaviour
 	/// <summary>
 	/// How far away the player  must be to trigger being in range
 	/// </summary>
-	[HideInInspector]
-	public float InteractionDistance = 2;
+	public float InteractionDistance;
 
 	protected bool WasInRange { get; private set; }
 
@@ -50,13 +43,13 @@ public abstract class BaseInteractable : MonoBehaviour
 		this.interactableUI.gameObject.SetActive(true);
 		this.interactableUI.AlignWithTarget();
 
-		this.spriteComp.color = this.InRangeColor;
+		this.spriteComp.color = Config.InRangeColor;
 	}
 	protected virtual void OnPlayerLeaveRange()
 	{
 		this.interactableUI.gameObject.SetActive(false);
 
-		this.spriteComp.color = this.OutOfRangeColor;
+		this.spriteComp.color = Config.OutOfRangeColor;
 	}
 
 	// Use this for initialization

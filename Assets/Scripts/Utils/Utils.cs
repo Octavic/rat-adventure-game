@@ -24,7 +24,7 @@ public static class Utils
 	{
 		for(var i = 0; i < obj.transform.childCount; i++)
 		{
-			GameObject.Destroy(obj.transform.GetChild(0));
+			GameObject.Destroy(obj.transform.GetChild(0).gameObject);
 		}
 	}
 }
