@@ -27,4 +27,9 @@ public static class Utils
 			GameObject.Destroy(obj.transform.GetChild(0).gameObject);
 		}
 	}
+
+	public static Color WithAlpha(this Color c, float newAlpha)
+	{
+		return new Color(c.r, c.g, c.b, newAlpha);
+	}
 }
