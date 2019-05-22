@@ -3,7 +3,7 @@ using System.Collections;
 
 public class RoomChangeDoor : BaseInteractable
 {
-	public Vector2 MoveToPosition;
+	public Vector3 MoveToPosition;
 	public float TransitionTime;
 
 	public override void OnInteractElementalizer(Compound currentCompound)
@@ -21,14 +21,7 @@ public class RoomChangeDoor : BaseInteractable
 		BlackScreen.FadeIn(TransitionTime);
 		yield return new WaitForSeconds(TransitionTime);
 		PlayerController.CurrentInstance.transform.position = this.MoveToPosition;
+		MainCamera.CurrentInstance.transform.position = this.MoveToPosition.WithZ(MainCamera.CurrentInstance.CameraDepth);
 		BlackScreen.FadeOut(TransitionTime);
-	}
-
-	protected override void Start()
-	{
-		this.interactableUI.SetMessage("Open", true);
-		this.interactableUI.SetMessage(null, false);
-
-		base.Start();
 	}
 }

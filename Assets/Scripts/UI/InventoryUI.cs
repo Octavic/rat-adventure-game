@@ -22,12 +22,11 @@ public class InventoryUI : MonoBehaviour
 	}
 	private static InventoryUI _currentInstance;
 
-
 	public bool TryAddItem(ItemUI newItem)
 	{
-		foreach(var slot in this.ItemSlots)
+		foreach (var slot in this.ItemSlots)
 		{
-			if(slot.CurrentItem == null)
+			if (slot.CurrentItem == null)
 			{
 				slot.PlaceItem(newItem);
 				newItem.gameObject.SetActive(true);
@@ -36,5 +35,17 @@ public class InventoryUI : MonoBehaviour
 		}
 
 		return false;
+	}
+
+	protected void Update()
+	{
+		var startingIndex = (int)KeyCode.Alpha1;
+		for (var i = 0; i < this.ItemSlots.Count; i++)
+		{
+			if (Input.GetKeyDown((KeyCode)startingIndex + i))
+			{
+				this.ItemSlots[i].OnClick();
+			}
+		}
 	}
 }

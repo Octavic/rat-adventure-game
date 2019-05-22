@@ -51,11 +51,6 @@ public class DialogueUI : MonoBehaviour
 	public List<DialogueOptionUI> OptionUIs;
 
 	/// <summary>
-	/// A list of listeners that gets notified when dialogue option is chosen
-	/// </summary>
-	public List<IDialogueEventListener> Listeners = new List<IDialogueEventListener>();
-
-	/// <summary>
 	/// How fast the text scrolls by
 	/// </summary>
 	public float CrawlSpeed;
@@ -201,10 +196,8 @@ public class DialogueUI : MonoBehaviour
 			return;
 		}
 
-		foreach (var listener in this.Listeners)
-		{
-			listener.OnSelectDialogueOption(DialogueOptionUI.CurrentSelected.TargetOption);
-		}
+		DialogueEventManager.OnSelectDialogueOption(DialogueOptionUI.CurrentSelected.TargetOption);
+		Destroy(this.gameObject);
 	}
 
 	private void UpdatePortrait()

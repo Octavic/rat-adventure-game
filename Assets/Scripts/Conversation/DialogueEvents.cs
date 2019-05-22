@@ -3,5 +3,6 @@ using System.Collections;
 
 public enum DialogueEvents
 {
-	DIALOGUE_END
+	DIALOGUE_END,
+	TOOTH_GIVEN
 }

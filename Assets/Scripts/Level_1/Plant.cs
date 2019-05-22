@@ -35,16 +35,6 @@ public class Plant : BaseInteractable
 
 	protected override void Start()
 	{
-		this.interactableUI.SetMessage(null, true);
 		base.Start();
-	}
-
-	protected override void Update()
-	{
-		var currentCompound = ElementalizerUI.CurrentInstance.CurrentCompound;
-		var isUsingWater = currentCompound != null && currentCompound.CompoundName == CompoundNames.Water;
-		this.interactableUI.SetMessage(isUsingWater ? "Water" : null, false);
-
-		base.Update();
 	}
 }

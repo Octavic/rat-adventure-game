@@ -34,36 +34,17 @@ public class Flammable : BaseInteractable
 	{
 		this.IsOnFire = true;
 		this.Flame.SetActive(true);
-		this.interactableUI.SetMessage(null, true);
 	}
 
 	protected void OnExtinguishFire()
 	{
 		this.IsOnFire = false;
 		this.Flame.SetActive(false);
-		this.interactableUI.SetMessage(null, false);
-	}
-
-	private void UpdateText()
-	{
-		var currentSelected = ItemSlotUI.CurrentlySelected;
-		var isSelectingLighter = currentSelected != null && currentSelected.CurrentItem.ItemName == ItemNames.Lighter;
-		this.interactableUI.SetMessage(isSelectingLighter && !this.IsOnFire ? "Light on fire" : null, true);
-
-		var currentCompound = ElementalizerUI.CurrentInstance.CurrentCompound;
-		var isUsingWater = currentCompound != null && currentCompound.CompoundName == CompoundNames.Water;
-		this.interactableUI.SetMessage(isUsingWater && this.IsOnFire ? "Extinguish" : null, false);
 	}
 
 	protected override void Start()
 	{
 		this.OnExtinguishFire();
 		base.Start();
-	}
-
-	protected override void Update()
-	{
-		this.UpdateText();
-		base.Update();
 	}
 }

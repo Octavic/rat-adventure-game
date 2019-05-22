@@ -32,4 +32,9 @@ public static class Utils
 	{
 		return new Color(c.r, c.g, c.b, newAlpha);
 	}
+
+	public static Vector3 WithZ(this Vector3 v, float z)
+	{
+		return new Vector3(v.x, v.y, z);
+	}
 }

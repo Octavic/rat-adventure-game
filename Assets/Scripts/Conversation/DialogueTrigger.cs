@@ -42,13 +42,8 @@ public class DialogueTrigger : BaseInteractable, IDialogueEventListener
 	public void OnSelectDialogueOption(DialogueOption option)
 	{
 		// TODO: Emit events here
-
 		var nextDialogue = option.NextDialogue;
-		if (string.IsNullOrEmpty(nextDialogue))
-		{
-			Destroy(this.DialogueUI.gameObject);
-		}
-		else
+		if (!string.IsNullOrEmpty(nextDialogue))
 		{
 			Dialogue targetDialogue;
 			if (!this.HashedDialogues.TryGetValue(nextDialogue, out targetDialogue))
@@ -73,8 +68,7 @@ public class DialogueTrigger : BaseInteractable, IDialogueEventListener
 			this.HashedDialogues[dialogueName] = dialogue;
 		}
 
-		this.interactableUI.SetMessage("Talk", true);
-		this.interactableUI.SetMessage(null, false);
+		DialogueEventManager.RegisterListener(this);
 
 		base.Start();
 	}
@@ -88,7 +82,6 @@ public class DialogueTrigger : BaseInteractable, IDialogueEventListener
 		}
 
 		this.DialogueUI = Instantiate(PrefabManager.CurrentInstance.PlayerPrompt, InputController.MainCanvas.transform);
-		this.DialogueUI.Listeners.Add(this);
 		this.DialogueUI.PlayDialogue(dialogue);
 	}
 }

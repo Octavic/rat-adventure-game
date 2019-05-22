@@ -31,7 +31,7 @@ public class BlackScreen : MonoBehaviour
 		if (alphaVelocity != 0)
 		{
 			var oldColor = this.imageComp.color;
-			this.imageComp.color = oldColor.WithAlpha(oldColor.a + alphaVelocity * Time.deltaTime);
+			this.imageComp.color = oldColor.WithAlpha(Mathf.Clamp(oldColor.a + alphaVelocity * Time.deltaTime, 0, 1));
 			var newColor = this.imageComp.color;
 			if (newColor.a <= 0 || newColor.a >= 1)
 			{

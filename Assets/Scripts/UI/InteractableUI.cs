@@ -4,23 +4,15 @@ using System.Collections;
 
 public class InteractableUI : MonoBehaviour
 {
-	public InteractPromptUI ItemPromptUI;
-	public InteractPromptUI ElementalizerUI;
+	public GameObject ItemPromptUI;
+	public GameObject ElementalizerUI;
 
 	public BaseInteractable Target { get; set; }
 
-	public void SetMessage(string message, bool isItem)
+	public void SetState(bool canInteractItem, bool canInteractElement)
 	{
-		var targetPrompt = isItem ? ItemPromptUI : ElementalizerUI;
-		if (message == null)
-		{
-			targetPrompt.HidePrompt();
-		}
-		else
-		{
-			targetPrompt.Message = message;
-			targetPrompt.ShowPrompt();
-		}
+		this.ItemPromptUI.SetActive(canInteractItem);
+		this.ElementalizerUI.SetActive(canInteractElement);
 	}
 
 	public void AlignWithTarget()

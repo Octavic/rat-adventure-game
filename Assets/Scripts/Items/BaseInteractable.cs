@@ -8,6 +8,9 @@ public abstract class BaseInteractable : MonoBehaviour
 	/// </summary>
 	public InteractableUI interactableUI;
 
+	public bool CanInteractItem;
+	public bool CanInteractElement;
+
 	/// <summary>
 	/// How far away the player  must be to trigger being in range
 	/// </summary>
@@ -55,6 +58,7 @@ public abstract class BaseInteractable : MonoBehaviour
 	// Use this for initialization
 	protected virtual void Start()
 	{
+		this.interactableUI.SetState(this.CanInteractItem, this.CanInteractElement);
 		this.spriteComp = this.GetComponent<SpriteRenderer>();
 	}
 
