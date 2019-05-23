@@ -51,7 +51,6 @@ public abstract class BaseInteractable : MonoBehaviour
 	protected virtual void OnPlayerLeaveRange()
 	{
 		this.interactableUI.gameObject.SetActive(false);
-
 		this.spriteComp.color = Config.OutOfRangeColor;
 	}
 
