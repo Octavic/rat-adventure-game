@@ -25,8 +25,20 @@ public struct Dialogue
 	/// </summary>
 	public string Name;
 
-	
+	/// <summary>
+	/// A list of all messages
+	/// </summary>
 	public List<DialogueMessage> Messages;
+
+	/// <summary>
+	/// What event to emit when player chooses this option
+	/// </summary>
+	public DialogueEvents EventEmitted;
+
+	/// <summary>
+	/// The next dialogue to be played. If none, then we return
+	/// </summary>
+	public string NextDialogue;
 
 	/// <summary>
 	/// The list  of options that the player can choose from

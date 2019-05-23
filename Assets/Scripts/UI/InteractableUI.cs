@@ -13,7 +13,6 @@ public class InteractableUI : MonoBehaviour
 				currentInstance = GameObject.FindObjectOfType<InteractableUI>();
 			}
 			return currentInstance;
-
 		}
 	}
 	private static InteractableUI currentInstance;
@@ -31,7 +30,8 @@ public class InteractableUI : MonoBehaviour
 
 	public void AlignWithTarget()
 	{
-		this.transform.position = MainCamera.CameraComp.WorldToScreenPoint(this.Target.transform.position);
+		var targe = this.Target;
+		this.transform.position = MainCamera.CameraComp.WorldToScreenPoint(targe.transform.position + (Vector3)targe.UIOffset);
 	}
 
 	public void Claim(BaseInteractable owner)
@@ -59,6 +59,7 @@ public class InteractableUI : MonoBehaviour
 
 	private void Start()
 	{
+		currentInstance = this;
 		this.gameObject.SetActive(false);
 	}
 }

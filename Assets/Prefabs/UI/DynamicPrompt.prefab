@@ -80,9 +80,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'X
-
-'
+  m_Text: 
 --- !u!114 &4930833690001828463
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -92,14 +90,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1865989464751474175}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7a8a94ec05c4d4c885cccc2cda05ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 455e4e4f447132a4b85037aa33574924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedArrow: {fileID: 8294936513808335287}
   TargetOption:
     OptionMessage: 
     NextDialogue: 
-    EventEmitted: 0
 --- !u!1 &1990228809230972719
 GameObject:
   m_ObjectHideFlags: 0
@@ -254,9 +251,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'X
-
-'
+  m_Text: 
 --- !u!114 &7517004118209848098
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -266,14 +261,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 2284635282238923571}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7a8a94ec05c4d4c885cccc2cda05ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 455e4e4f447132a4b85037aa33574924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedArrow: {fileID: 9143437282383979273}
   TargetOption:
     OptionMessage: 
     NextDialogue: 
-    EventEmitted: 0
 --- !u!1 &4539338435541374154
 GameObject:
   m_ObjectHideFlags: 0
@@ -428,9 +422,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'X
-
-'
+  m_Text: 
 --- !u!114 &3668382361150741350
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -440,14 +432,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5771708935422242257}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7a8a94ec05c4d4c885cccc2cda05ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 455e4e4f447132a4b85037aa33574924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedArrow: {fileID: 6529374211385920873}
   TargetOption:
     OptionMessage: 
     NextDialogue: 
-    EventEmitted: 0
 --- !u!1 &6529374211385920873
 GameObject:
   m_ObjectHideFlags: 0
@@ -602,9 +593,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'X
-
-'
+  m_Text: 
 --- !u!114 &2365617307413920508
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -614,14 +603,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 7079597178036511292}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cb7a8a94ec05c4d4c885cccc2cda05ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 455e4e4f447132a4b85037aa33574924, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SelectedArrow: {fileID: 4539338435541374154}
   TargetOption:
     OptionMessage: 
     NextDialogue: 
-    EventEmitted: 0
 --- !u!1 &8294936513808335287
 GameObject:
   m_ObjectHideFlags: 0
@@ -774,7 +762,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: TEST TEXT
+  m_Text: '
+
+'
 --- !u!1 &8837009197757408363
 GameObject:
   m_ObjectHideFlags: 0
@@ -865,7 +855,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8837009197757408363}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22f35b8911a22ee479ea83479709c940, type: 3}
+  m_Script: {fileID: 11500000, guid: 882e07dbc5012bc4bb661bfddb92eb4a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   PortraitSlot: {fileID: 1990228809230972719}
@@ -875,8 +865,8 @@ MonoBehaviour:
   - {fileID: 3668382361150741350}
   - {fileID: 4930833690001828463}
   CrawlSpeed: 30
-  SkipCooldown: 0.2
-  SecondsBetweenDisplayOptions: 0.1
+  SkipCooldown: 0.5
+  SecondsBetweenDisplayOptions: 0.2
   TextBox: {fileID: 8837009195975533088}
 --- !u!1 &9143437282383979273
 GameObject:

@@ -6,6 +6,8 @@ public abstract class BaseInteractable : MonoBehaviour
 	public bool CanInteractItem;
 	public bool CanInteractElement;
 
+	public Vector2 UIOffset;
+
 	/// <summary>
 	/// How far away the player  must be to trigger being in range
 	/// </summary>

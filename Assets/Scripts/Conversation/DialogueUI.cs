@@ -71,11 +71,6 @@ public class DialogueUI : MonoBehaviour
 	public Text TextBox;
 
 	/// <summary>
-	/// The prompt that's currently active
-	/// </summary>
-	public static DialogueUI ActivePrompt { get; private set; }
-
-	/// <summary>
 	/// The message that's being displayed currently
 	/// </summary>
 	public Dialogue CurrentDialogue { get; private set; }
@@ -135,14 +130,6 @@ public class DialogueUI : MonoBehaviour
 	/// <param name="targetDialogue">The dialogue to be displayed</param>
 	public void PlayDialogue(Dialogue targetDialogue)
 	{
-		if (ActivePrompt != null && ActivePrompt.gameObject.activeSelf && ActivePrompt != this)
-		{
-			Debug.LogError("A prompt is still active, cannot start a new prompt!");
-			Destroy(this.gameObject);
-			return;
-		}
-		ActivePrompt = this;
-
 		// Sets the dialogue and starts the cooldown
 		this.CurrentDialogue = targetDialogue;
 		StartCoroutine(this.StartSkipCooldown(this.SkipCooldown));
@@ -170,6 +157,12 @@ public class DialogueUI : MonoBehaviour
 				this.OptionUIs[i].gameObject.SetActive(false);
 			}
 		}
+
+		// Check if the message is empty
+		if (string.IsNullOrWhiteSpace(this.CurrentMessage.Message))
+		{
+			this.OnScrollToEnd();
+		}
 	}
 
 	private void OnPlayerChangeSelection(Directions direction)
@@ -189,6 +182,43 @@ public class DialogueUI : MonoBehaviour
 		}
 	}
 
+	private void OnScrollToEnd()
+	{
+		if (this.ValidOptions.Count == 0)
+		{
+			// No options, see if there's more 
+			DialogueEventManager.EmitEvent(this.CurrentDialogue.EventEmitted);
+			var nextDialogue = this.CurrentDialogue.NextDialogue;
+			if (!string.IsNullOrEmpty(nextDialogue))
+			{
+				DialogueUIController.CurrentInstance.PlayDialogue(nextDialogue);
+			}
+			else
+			{
+				Destroy(this.gameObject);
+			}
+
+			return;
+		}
+
+		if (!this.isOptionsReady)
+		{
+			StartCoroutine(this.ShowOptions());
+		}
+		else
+		{
+			this.OnPlayerChooseSelection();
+		}
+
+		StartCoroutine(this.DisablePortraitCoroutine());
+	}
+
+	private IEnumerator DisablePortraitCoroutine()
+	{
+		yield return new WaitForSeconds(0.1f);
+		this.PortraitSlot.GetComponentInChildren<Animator>().enabled = false;
+	}
+
 	private void OnPlayerChooseSelection()
 	{
 		if (DialogueOptionUI.CurrentSelected == null)
@@ -196,7 +226,7 @@ public class DialogueUI : MonoBehaviour
 			return;
 		}
 
-		DialogueEventManager.OnSelectDialogueOption(DialogueOptionUI.CurrentSelected.TargetOption);
+		DialogueUIController.CurrentInstance.PlayDialogue(DialogueOptionUI.CurrentSelected.TargetOption.NextDialogue);
 		Destroy(this.gameObject);
 	}
 
@@ -246,21 +276,7 @@ public class DialogueUI : MonoBehaviour
 		}
 
 		// Reached the end of messages
-		if (this.ValidOptions.Count == 0)
-		{
-			// No options, done
-			Destroy(this.gameObject);
-			return;
-		}
-
-		if (!this.isOptionsReady)
-		{
-			StartCoroutine(this.ShowOptions());
-		}
-		else
-		{
-			this.OnPlayerChooseSelection();
-		}
+		this.OnScrollToEnd();
 	}
 
 	private IEnumerator ShowOptions()
@@ -306,7 +322,7 @@ public class DialogueUI : MonoBehaviour
 		{
 			this.currentCharIndex += this.CrawlSpeed * Time.deltaTime;
 			this.TextBox.text = this.CurrentMessage.Message.Substring(0, (int)this.currentCharIndex);
-		} 
+		}
 	}
 
 	private IEnumerator StartSkipCooldown(float seconds)

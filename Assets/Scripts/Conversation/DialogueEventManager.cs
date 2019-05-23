@@ -3,23 +3,33 @@ using System.Collections.Generic;
 
 public static class DialogueEventManager
 {
-	public static HashSet<IDialogueEventListener> Listeners = new HashSet<IDialogueEventListener>();
+	public static Dictionary<DialogueEvents, List<IDialogueEventListener>> Listeners = 
+		      new Dictionary<DialogueEvents, List<IDialogueEventListener>>();
 
-	public static void RegisterListener(IDialogueEventListener listener)
+	public static void RegisterListener(DialogueEvents e, IDialogueEventListener listener)
 	{
-		Listeners.Add(listener);
-	}
-
-	public static void RemoveListener(IDialogueEventListener listener)
-	{
-		Listeners.Remove(listener);
-	}
-
-	public static void OnSelectDialogueOption(DialogueOption option)
-	{
-		foreach(var listener in Listeners)
+		if (!Listeners.ContainsKey(e))
 		{
-			listener.OnSelectDialogueOption(option);
+			Listeners[e] = new List<IDialogueEventListener>();
+		}
+
+		Listeners[e].Add(listener);
+	}
+
+	public static void RemoveListener(DialogueEvents e, IDialogueEventListener listener)
+	{
+		Listeners[e].Remove(listener);
+	}
+
+	public static void EmitEvent(DialogueEvents e)
+	{
+		List<IDialogueEventListener> listeners;
+		if (Listeners.TryGetValue(e, out listeners))
+		{
+			foreach (var listener in listeners)
+			{
+				listener.OnEventTrigger(e);
+			}
 		}
 	}
 }

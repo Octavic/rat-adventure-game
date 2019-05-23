@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 	protected virtual void FixedUpdate()
 	{
 		// Do nothing if there's a dialogue going on
-		if (DialogueUI.ActivePrompt != null)
+		if (FindObjectOfType<DialogueUI>() != null)
 		{
 			return;
 		}

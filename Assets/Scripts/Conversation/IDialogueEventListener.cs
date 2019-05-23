@@ -1,4 +1,4 @@
 ﻿public interface IDialogueEventListener
 {
-	void OnSelectDialogueOption(DialogueOption option);
+	void OnEventTrigger(DialogueEvents e);
 }

@@ -14,9 +14,4 @@ public struct DialogueOption
 	/// The dialogue that should play next
 	/// </summary>
 	public string NextDialogue;
-
-	/// <summary>
-	/// What event to emit when player chooses this option
-	/// </summary>
-	public DialogueEvents EventEmitted;
 }
