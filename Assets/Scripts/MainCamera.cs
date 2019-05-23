@@ -25,6 +25,22 @@ public class MainCamera : MonoBehaviour
 	}
 	private static MainCamera _currentInstance;
 
+	private float ShakeIntensity;
+
+	/// <summary>
+	/// Shakes the camera
+	/// </summary>
+	public void Shake(float intensity, float duration = 2.0f)
+	{
+		this.ShakeIntensity = intensity;
+		StartCoroutine(this.ClearShake(duration));
+	}
+	private IEnumerator ClearShake(float duration)
+	{
+		yield return new WaitForSeconds(duration);
+		this.ShakeIntensity = 0;
+	}
+
 	// Use this for initialization
 	void Start()
 	{
@@ -40,5 +56,11 @@ public class MainCamera : MonoBehaviour
 			new Vector3(focusObjPosition.x, focusObjPosition.y  + this.CameraHeight, this.CameraDepth),
 			this.LerpSpeed
 		);
+
+		if(this.ShakeIntensity != 0)
+		{
+			var randomOffset = new Vector3(Random.value, Random.value).normalized * this.ShakeIntensity;
+			this.transform.position += randomOffset;
+		}
 	}
 }
