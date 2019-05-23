@@ -6126,14 +6126,12 @@ MonoBehaviour:
   RandalDialogue:
     Name: X
     Messages:
-    - PortraiPrefab: {fileID: 7934837533388905128, guid: d66f459a56fee6946b987926040c5049,
+    - PortraiPrefab: {fileID: 5781700606915333616, guid: e57d1939f69f8e64c9f2107d7c724670,
         type: 3}
       Message: Hey, you can't just walk out of here!
     EventEmitted: 0
     NextDialogue: 
-    Options:
-    - OptionMessage: Huh?
-      NextDialogue: 
+    Options: []
 --- !u!61 &1191929112
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -7198,7 +7196,7 @@ MonoBehaviour:
     - PortraiPrefab: {fileID: 2034290392153440243, guid: fe40a96cf75e98d40b0f49e355419c57,
         type: 3}
       Message: Why would you even want a tooth?
-    - PortraiPrefab: {fileID: 5781700606915333616, guid: e57d1939f69f8e64c9f2107d7c724670,
+    - PortraiPrefab: {fileID: 130855230401502288, guid: 9050395e60a395343b5e9391146d6b04,
         type: 3}
       Message: "I need a good piece of bling! I can\u2019t be royal and not have some
         sapphire jewelry! I need it for a necklace idea I have."
@@ -7207,10 +7205,10 @@ MonoBehaviour:
     Options: []
   - Name: TESLA_BEAST
     Messages:
-    - PortraiPrefab: {fileID: 2034290392153440243, guid: fe40a96cf75e98d40b0f49e355419c57,
+    - PortraiPrefab: {fileID: 2466679187624904897, guid: 0038557b7edaffe45906bd0fa02eacac,
         type: 3}
       Message: A beast!? What beast?
-    - PortraiPrefab: {fileID: 5781700606915333616, guid: e57d1939f69f8e64c9f2107d7c724670,
+    - PortraiPrefab: {fileID: 130855230401502288, guid: 9050395e60a395343b5e9391146d6b04,
         type: 3}
       Message: "Ask Harry about it. He\u2019s the janitor. He can meet you across
         the hall, he usually feeds the thing"
@@ -7222,7 +7220,7 @@ MonoBehaviour:
     - PortraiPrefab: {fileID: 2034290392153440243, guid: fe40a96cf75e98d40b0f49e355419c57,
         type: 3}
       Message: How am I supposed to get this tooth anyway? It seems dangerous
-    - PortraiPrefab: {fileID: 5781700606915333616, guid: e57d1939f69f8e64c9f2107d7c724670,
+    - PortraiPrefab: {fileID: 130855230401502288, guid: 9050395e60a395343b5e9391146d6b04,
         type: 3}
       Message: "You bet it\u2019s dangerous! That is why you are going to do it, and
         not me!"
@@ -7234,7 +7232,7 @@ MonoBehaviour:
     - PortraiPrefab: {fileID: 2034290392153440243, guid: fe40a96cf75e98d40b0f49e355419c57,
         type: 3}
       Message: Fine, I guess I will get you a darn tooth
-    - PortraiPrefab: {fileID: 5781700606915333616, guid: e57d1939f69f8e64c9f2107d7c724670,
+    - PortraiPrefab: {fileID: 130855230401502288, guid: 9050395e60a395343b5e9391146d6b04,
         type: 3}
       Message: "I\u2019ll be waiting."
     EventEmitted: 2

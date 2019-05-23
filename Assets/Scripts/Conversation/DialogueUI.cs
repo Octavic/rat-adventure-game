@@ -226,18 +226,20 @@ public class DialogueUI : MonoBehaviour
 			return;
 		}
 
-		DialogueUIController.CurrentInstance.PlayDialogue(DialogueOptionUI.CurrentSelected.TargetOption.NextDialogue);
+		var nextDialogue = DialogueOptionUI.CurrentSelected.TargetOption.NextDialogue;
+		if(!string.IsNullOrWhiteSpace(nextDialogue))
+		{
+			DialogueUIController.CurrentInstance.PlayDialogue(nextDialogue);
+		}
 		Destroy(this.gameObject);
 	}
 
 	private void UpdatePortrait()
 	{
 		this.PortraitSlot.DestroyAllChildren();
-
-		var targetMessage = this.CurrentDialogue.Messages[this.MessageIndex];
-		if (targetMessage.PortraiPrefab != null)
+		if (this.CurrentMessage.PortraiPrefab != null)
 		{
-			var newPortrait = Instantiate(targetMessage.PortraiPrefab, this.PortraitSlot.transform);
+			var newPortrait = Instantiate(this.CurrentMessage.PortraiPrefab, this.PortraitSlot.transform);
 			newPortrait.transform.localPosition = new Vector3();
 			this.PortraitSlot.SetActive(true);
 		}
