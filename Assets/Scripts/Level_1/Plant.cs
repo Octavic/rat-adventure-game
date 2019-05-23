@@ -27,14 +27,4 @@ public class Plant : BaseInteractable
 	{
 		return false;
 	}
-
-	protected override void OnPlayerEnterRange()
-	{
-		base.OnPlayerEnterRange();
-	}
-
-	protected override void Start()
-	{
-		base.Start();
-	}
 }

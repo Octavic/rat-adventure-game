@@ -3,11 +3,6 @@ using System.Collections;
 
 public abstract class BaseInteractable : MonoBehaviour
 {
-	/// <summary>
-	/// UI related
-	/// </summary>
-	public InteractableUI interactableUI;
-
 	public bool CanInteractItem;
 	public bool CanInteractElement;
 
@@ -42,22 +37,19 @@ public abstract class BaseInteractable : MonoBehaviour
 
 	protected virtual void OnPlayerEnterRange()
 	{
-		this.interactableUI.Target = this;
-		this.interactableUI.gameObject.SetActive(true);
-		this.interactableUI.AlignWithTarget();
-
+		InteractableUI.CurrentInstance.Claim(this);
 		this.spriteComp.color = Config.InRangeColor;
 	}
 	protected virtual void OnPlayerLeaveRange()
 	{
-		this.interactableUI.gameObject.SetActive(false);
+		InteractableUI.CurrentInstance.Unclaim();
 		this.spriteComp.color = Config.OutOfRangeColor;
 	}
 
 	// Use this for initialization
 	protected virtual void Start()
 	{
-		this.interactableUI.SetState(this.CanInteractItem, this.CanInteractElement);
+		InteractableUI.CurrentInstance.SetState(this.CanInteractItem, this.CanInteractElement);
 		this.spriteComp = this.GetComponent<SpriteRenderer>();
 	}
 
