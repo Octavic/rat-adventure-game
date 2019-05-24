@@ -12,19 +12,23 @@ public class PitZone : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		if(collision.gameObject.tag != "Player")
+		if (InventoryUI.CurrentInstance.Has(ItemNames.MediumRareMeat))
+		{
+			Destroy(this.gameObject);
+		}
+		if (collision.gameObject.tag != "Player")
 		{
 			return;
 		}
 
-		if(!this.HasReveled)
+		if (!this.HasReveled)
 		{
 			StartCoroutine(this.PlayPitReveal());
 			this.HasReveled = true;
 		}
 		else
 		{
-
+			DialogueUIController.CurrentInstance.SetDialogues(new System.Collections.Generic.List<Dialogue>() { this.CantEnterDialogue });
 		}
 	}
 
@@ -36,11 +40,10 @@ public class PitZone : MonoBehaviour
 		MainCameraComp.FocusObject = this.PitAnimator.gameObject;
 		yield return new WaitForSeconds(0.25f);
 		this.PitAnimator.SetBool("IsRevealing", true);
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(3.5f);
 		this.CutSceneBarsUI.Hide();
 		yield return new WaitForSeconds(0.25f);
 		MainCameraComp.FocusObject = oldFocusObject;
-
 	}
 
 	// Use this for initialization

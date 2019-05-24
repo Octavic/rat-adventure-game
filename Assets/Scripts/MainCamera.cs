@@ -53,13 +53,13 @@ public class MainCamera : MonoBehaviour
 		var focusObjPosition = FocusObject.transform.position;
 		this.transform.position = Vector3.Lerp(
 			this.transform.position,
-			new Vector3(focusObjPosition.x, focusObjPosition.y  + this.CameraHeight, this.CameraDepth),
+			new Vector3(focusObjPosition.x, focusObjPosition.y + this.CameraHeight, this.CameraDepth),
 			this.LerpSpeed
 		);
 
-		if(this.ShakeIntensity != 0)
+		if (this.ShakeIntensity != 0)
 		{
-			var randomOffset = new Vector3(Random.value, Random.value).normalized * this.ShakeIntensity;
+			var randomOffset = new Vector3(Random.value - 0.5f, Random.value - 0.5f).normalized * this.ShakeIntensity;
 			this.transform.position += randomOffset;
 		}
 	}

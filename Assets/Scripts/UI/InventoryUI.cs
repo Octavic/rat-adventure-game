@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -21,6 +22,11 @@ public class InventoryUI : MonoBehaviour
 		}
 	}
 	private static InventoryUI _currentInstance;
+
+	public bool Has(ItemNames item)
+	{
+		return this.ItemSlots.Any(itemSlot => itemSlot.CurrentItem != null && itemSlot.CurrentItem.ItemName == item);
+	}
 
 	public bool TryAddItem(ItemUI newItem)
 	{

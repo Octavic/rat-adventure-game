@@ -10,5 +10,6 @@ public enum ItemNames
 	HydrogenBalloon,
 	DangerousBalloon,
 	Lighter,
-	Meat
+	Meat,
+	MediumRareMeat
 }
