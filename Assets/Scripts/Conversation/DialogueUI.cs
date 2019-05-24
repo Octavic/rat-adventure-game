@@ -184,6 +184,8 @@ public class DialogueUI : MonoBehaviour
 
 	private void OnScrollToEnd()
 	{
+		DialogueEventManager.EmitEvent(this.CurrentDialogue.EventEmitted);
+
 		if (this.ValidOptions.Count == 0)
 		{
 			// No options, see if there's more 

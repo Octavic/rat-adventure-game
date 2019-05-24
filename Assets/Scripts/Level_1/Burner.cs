@@ -9,6 +9,7 @@ public class Burner : BaseInteractable
 	public Dialogue NeedFire;
 
 	private Animator AnimatorComp;
+	private AudioSource AudioComp;
 	private bool isBurning;
 
 	public override void OnInteractElementalizer(Compound currentCompound)
@@ -21,11 +22,13 @@ public class Burner : BaseInteractable
 		if (currentCompound.CompoundName == CompoundNames.Oxygen)
 		{
 			this.isBurning = true;
+			this.AudioComp.mute = false;
 			this.AnimatorComp.SetBool("IsBurning", true);
 		}
 		if (currentCompound.CompoundName == CompoundNames.Water)
 		{
 			this.isBurning = false;
+			this.AudioComp.mute = true;
 			this.AnimatorComp.SetBool("IsBurning", false);
 		}
 	}
@@ -50,6 +53,8 @@ public class Burner : BaseInteractable
 	protected override void Start()
 	{
 		this.AnimatorComp = this.GetComponent<Animator>();
+		this.AudioComp = this.GetComponent<AudioSource>();
+
 		base.Start();
 	}
 }

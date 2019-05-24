@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+	public AudioSource FootStepSource;
+
 	public static PlayerController CurrentInstance
 	{
 		get
@@ -105,7 +107,9 @@ public class PlayerController : MonoBehaviour
 				this.wasFacing = newFacing;
 			}
 
-			this.animatorComp.SetBool(PlayerAnimationParams.IsMoving, x != 0 || y != 0);
+			var isMoving = x != 0 || y != 0;
+			this.animatorComp.SetBool(PlayerAnimationParams.IsMoving, isMoving);
+			this.FootStepSource.mute = !isMoving;
 
 			this.rgbdComp.MovePosition(
 				this.transform.position + new Vector3(

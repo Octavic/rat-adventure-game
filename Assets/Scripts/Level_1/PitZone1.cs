@@ -26,7 +26,7 @@ public class PitZone1 : MonoBehaviour
 		MainCameraComp.FocusObject = this.PitAnimator.gameObject;
 		yield return new WaitForSeconds(0.25f);
 		this.PitAnimator.SetBool("IsRevealing", true);
-		yield return new WaitForSeconds(7.0f);
+		yield return new WaitForSeconds(6.0f);
 		this.CutSceneBarsUI.Hide();
 		yield return new WaitForSeconds(0.25f);
 		MainCameraComp.FocusObject = oldFocusObject;

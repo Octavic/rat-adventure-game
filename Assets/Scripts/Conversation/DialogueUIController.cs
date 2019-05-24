@@ -58,7 +58,7 @@ public class DialogueUIController : MonoBehaviour
 			Destroy(this.currentDialogueUI.gameObject);
 		}
 
-		this.currentDialogueUI = Instantiate(this.DialogueUIPrefab, InputController.MainCanvas.transform);
+		this.currentDialogueUI = Instantiate(this.DialogueUIPrefab, this.transform);
 		this.currentDialogueUI.PlayDialogue(dialogue);
 	}
 

@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using System.Collections.Generic;
 using System.Linq;
 
-public class ElementalizerUI : MonoBehaviour
+public class ElementalizerUI : MonoBehaviour, IDialogueEventListener
 {
 	public Text CompoundName;
 	public Text CompoundFormula;
@@ -75,5 +75,12 @@ public class ElementalizerUI : MonoBehaviour
 	protected void Start()
 	{
 		this.CurrentCompound = null;
+		DialogueEventManager.RegisterListener(DialogueEvents.ELEMENTALIZER_GIVEN, this);
+	}
+
+	public void OnEventTrigger(DialogueEvents e)
+	{
+		Debug.Log("TRIGGERED");
+		this.GetComponent<Animator>().SetBool("IsShowing", true);
 	}
 }
