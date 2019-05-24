@@ -3,9 +3,9 @@ using System.Collections;
 
 public class SimpleChest : BaseContainer
 {
-	protected virtual void OnRemoveItem()
+	protected void OnRemoveItem()
 	{
-
+		Destroy(this.gameObject);
 	}
 
 	public override bool OnInteractItem(ItemUI holdingItem)

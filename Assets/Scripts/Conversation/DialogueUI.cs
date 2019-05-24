@@ -215,8 +215,12 @@ public class DialogueUI : MonoBehaviour
 
 	private IEnumerator DisablePortraitCoroutine()
 	{
+		
 		yield return new WaitForSeconds(0.1f);
-		this.PortraitSlot.GetComponentInChildren<Animator>().enabled = false;
+		if (this.PortraitSlot.gameObject.activeInHierarchy)
+		{
+			this.PortraitSlot.GetComponentInChildren<Animator>().enabled = false;
+		}
 	}
 
 	private void OnPlayerChooseSelection()
@@ -227,7 +231,7 @@ public class DialogueUI : MonoBehaviour
 		}
 
 		var nextDialogue = DialogueOptionUI.CurrentSelected.TargetOption.NextDialogue;
-		if(!string.IsNullOrWhiteSpace(nextDialogue))
+		if (!string.IsNullOrWhiteSpace(nextDialogue))
 		{
 			DialogueUIController.CurrentInstance.PlayDialogue(nextDialogue);
 		}

@@ -11,5 +11,6 @@ public enum ItemNames
 	DangerousBalloon,
 	Lighter,
 	Meat,
-	MediumRareMeat
+	MediumRareMeat,
+	BoneWithTeeth
 }

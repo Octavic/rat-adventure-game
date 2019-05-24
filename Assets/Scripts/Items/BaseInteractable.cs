@@ -8,18 +8,6 @@ public abstract class BaseInteractable : MonoBehaviour
 
 	public Vector2 UIOffset;
 
-	/// <summary>
-	/// How far away the player  must be to trigger being in range
-	/// </summary>
-	public float InteractionDistance;
-
-	protected bool WasInRange { get; private set; }
-
-	public bool IsInRange()
-	{
-		return (PlayerController.CurrentInstance.transform.position - this.transform.position).magnitude < this.InteractionDistance;
-	}
-
 	public bool IsInteractable { get; protected set; }
 
 	protected SpriteRenderer spriteComp;
@@ -36,6 +24,22 @@ public abstract class BaseInteractable : MonoBehaviour
 	/// </summary>
 	/// <param name="currentCompound">The current compound in use</param>
 	public abstract void OnInteractElementalizer(Compound currentCompound);
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			this.OnPlayerEnterRange();
+		}
+	}
+
+	private void OnCollisionExit2D(Collision2D collision)
+	{
+		if (collision.gameObject.tag == "Player")
+		{
+			this.OnPlayerLeaveRange();
+		}
+	}
 
 	protected virtual void OnPlayerEnterRange()
 	{
@@ -55,19 +59,8 @@ public abstract class BaseInteractable : MonoBehaviour
 		this.spriteComp = this.GetComponent<SpriteRenderer>();
 	}
 
-	// Update is called once per frame
 	protected virtual void Update()
 	{
-		var isNowInRange = IsInRange();
-		if (isNowInRange && !this.WasInRange)
-		{
-			this.OnPlayerEnterRange();
-		}
-		else if (!isNowInRange && this.WasInRange)
-		{
-			this.OnPlayerLeaveRange();
-		}
 
-		this.WasInRange = isNowInRange;
 	}
 }

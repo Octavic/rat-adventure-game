@@ -24,6 +24,11 @@ public class DialogueUIController : MonoBehaviour
 
 	private DialogueUI currentDialogueUI;
 
+	public void SetDialogue(Dialogue d)
+	{
+		this.SetDialogues(new List<Dialogue>() { d });
+	}
+
 	public void SetDialogues(List<Dialogue> dialogues, string startingDialogue = null)
 	{
 		if (startingDialogue == null)

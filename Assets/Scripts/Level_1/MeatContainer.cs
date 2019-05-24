@@ -7,10 +7,4 @@ public class MeatContainer : SimpleChest
 	{
 		this.GetComponent<Animator>().SetBool("IsFalling", true);
 	}
-
-	protected override void OnRemoveItem()
-	{
-		Destroy(this.gameObject);
-		base.OnRemoveItem();
-	}
 }

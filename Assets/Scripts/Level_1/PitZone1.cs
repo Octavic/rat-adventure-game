@@ -1,14 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class PitZone : MonoBehaviour
+public class PitZone1 : MonoBehaviour
 {
 	public CutSceneBars CutSceneBarsUI;
 	public Animator PitAnimator;
 	public MainCamera MainCameraComp;
-	public Dialogue CantEnterDialogue;
-
-	public SimpleChest ToothChest;
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
@@ -17,23 +15,21 @@ public class PitZone : MonoBehaviour
 			return;
 		}
 
-		DialogueUIController.CurrentInstance.SetDialogue(this.CantEnterDialogue);
+		StartCoroutine(this.PlayPitReveal());
 	}
 
-	public IEnumerator PlayPitCatch()
+	public IEnumerator PlayPitReveal()
 	{
 		this.CutSceneBarsUI.Show();
 		yield return new WaitForSeconds(0.25f);
 		var oldFocusObject = MainCameraComp.FocusObject;
 		MainCameraComp.FocusObject = this.PitAnimator.gameObject;
 		yield return new WaitForSeconds(0.25f);
-		this.PitAnimator.SetBool("IsCatching", true);
-		yield return new WaitForSeconds(3.0f);
-		ToothChest.gameObject.SetActive(true);
+		this.PitAnimator.SetBool("IsRevealing", true);
+		yield return new WaitForSeconds(7.0f);
 		this.CutSceneBarsUI.Hide();
 		yield return new WaitForSeconds(0.25f);
 		MainCameraComp.FocusObject = oldFocusObject;
-
 		Destroy(this.gameObject);
 	}
 }

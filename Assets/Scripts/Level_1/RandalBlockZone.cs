@@ -18,11 +18,12 @@ public class RandalBlockZone : MonoBehaviour, IDialogueEventListener
 	{
 		if (collision.gameObject.tag == "Player")
 		{
-			DialogueUIController.CurrentInstance.SetDialogues(new System.Collections.Generic.List<Dialogue>() { this.RandalDialogue });
+			DialogueUIController.CurrentInstance.SetDialogue(this.RandalDialogue);
 		}
 	}
 
 	private void Start()
 	{
+		DialogueEventManager.RegisterListener(DialogueEvents.TOOTH_GIVEN, this);
 	}
 }

@@ -122,32 +122,27 @@ public class PlayerController : MonoBehaviour
 		if (isInteractElementalizer || isInteractItem)
 		{
 			// Find the interactable items
-			var curPos = this.transform.position;
-			foreach (var interactable in GameObject.FindObjectsOfType<BaseInteractable>())
+			var interactable = InteractableUI.CurrentInstance.Target;
+			if (interactable != null)
 			{
-				var distance = (interactable.transform.position - curPos).magnitude;
-				// Check to see if player is within distancec of the interactable
-				if (distance < interactable.InteractionDistance)
+				// Can only interact with one way at a time
+				if (isInteractItem)
 				{
-					// Can only interact with one way at a time
-					if (isInteractItem)
-					{
-						var currentSelected = ItemSlotUI.CurrentlySelected;
-						bool shouldUseUp = interactable.OnInteractItem(currentSelected == null ? null : currentSelected.CurrentItem);
+					var currentSelected = ItemSlotUI.CurrentlySelected;
+					bool shouldUseUp = interactable.OnInteractItem(currentSelected == null ? null : currentSelected.CurrentItem);
 
-						if (shouldUseUp)
+					if (shouldUseUp)
+					{
+						var removedItem = currentSelected.RemoveItem();
+						if (removedItem != null)
 						{
-							var removedItem = currentSelected.RemoveItem();
-							if (removedItem != null)
-							{
-								Destroy(removedItem.gameObject);
-							}
+							Destroy(removedItem.gameObject);
 						}
 					}
-					else if (isInteractElementalizer)
-					{
-						interactable.OnInteractElementalizer(ElementalizerUI.CurrentInstance.CurrentCompound);
-					}
+				}
+				else if (isInteractElementalizer)
+				{
+					interactable.OnInteractElementalizer(ElementalizerUI.CurrentInstance.CurrentCompound);
 				}
 			}
 		}
