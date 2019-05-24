@@ -40,21 +40,23 @@ public class PitZone : MonoBehaviour
 		MainCameraComp.FocusObject = this.PitAnimator.gameObject;
 		yield return new WaitForSeconds(0.25f);
 		this.PitAnimator.SetBool("IsRevealing", true);
-		yield return new WaitForSeconds(3.5f);
+		yield return new WaitForSeconds(7.0f);
 		this.CutSceneBarsUI.Hide();
 		yield return new WaitForSeconds(0.25f);
 		MainCameraComp.FocusObject = oldFocusObject;
 	}
 
-	// Use this for initialization
-	void Start()
+	private IEnumerator PlayPitCatch()
 	{
-
-	}
-
-	// Update is called once per frame
-	void Update()
-	{
-
+		this.CutSceneBarsUI.Show();
+		yield return new WaitForSeconds(0.25f);
+		var oldFocusObject = MainCameraComp.FocusObject;
+		MainCameraComp.FocusObject = this.PitAnimator.gameObject;
+		yield return new WaitForSeconds(0.25f);
+		this.PitAnimator.SetBool("IsCatching", true);
+		yield return new WaitForSeconds(3.0f);
+		this.CutSceneBarsUI.Hide();
+		yield return new WaitForSeconds(0.25f);
+		MainCameraComp.FocusObject = oldFocusObject;
 	}
 }

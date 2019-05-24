@@ -55,7 +55,7 @@ public class PlayerController : MonoBehaviour
 	protected virtual void FixedUpdate()
 	{
 		// Do nothing if there's a dialogue going on
-		if (FindObjectOfType<DialogueUI>() != null || FindObjectOfType<CutSceneBars>() != null)
+		if (FindObjectOfType<DialogueUI>() != null)
 		{
 			this.animatorComp.SetBool(PlayerAnimationParams.IsMoving, false);
 			return;
