@@ -59,9 +59,9 @@ public class ElementalizerUI : MonoBehaviour, IDialogueEventListener
 	public void OnChangeElement()
 	{
 		var activeElements = new List<Element>();
-		foreach(var ui in this.ElementUIs.Values)
+		foreach (var ui in this.ElementUIs.Values)
 		{
-			if(ui.IsElementActive)
+			if (ui.IsElementActive)
 			{
 				activeElements.Add(ui.TargetElement);
 			}
@@ -80,7 +80,6 @@ public class ElementalizerUI : MonoBehaviour, IDialogueEventListener
 
 	public void OnEventTrigger(DialogueEvents e)
 	{
-		Debug.Log("TRIGGERED");
 		this.GetComponent<Animator>().SetBool("IsShowing", true);
 	}
 }

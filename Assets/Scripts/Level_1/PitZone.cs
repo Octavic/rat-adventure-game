@@ -24,12 +24,16 @@ public class PitZone : MonoBehaviour
 	{
 		this.CutSceneBarsUI.Show();
 		yield return new WaitForSeconds(0.25f);
+
 		var oldFocusObject = MainCameraComp.FocusObject;
 		MainCameraComp.FocusObject = this.PitAnimator.gameObject;
 		yield return new WaitForSeconds(0.25f);
+
 		this.PitAnimator.SetBool("IsCatching", true);
-		yield return new WaitForSeconds(3.0f);
+		yield return new WaitForSeconds(2.5f);
 		ToothChest.gameObject.SetActive(true);
+		yield return new WaitForSeconds(0.5f);
+
 		this.CutSceneBarsUI.Hide();
 		yield return new WaitForSeconds(0.25f);
 		MainCameraComp.FocusObject = oldFocusObject;

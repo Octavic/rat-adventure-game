@@ -217,7 +217,7 @@ public class DialogueUI : MonoBehaviour
 
 	private IEnumerator DisablePortraitCoroutine()
 	{
-		
+
 		yield return new WaitForSeconds(0.1f);
 		if (this.PortraitSlot.gameObject.activeInHierarchy)
 		{
@@ -308,6 +308,10 @@ public class DialogueUI : MonoBehaviour
 		{
 			this.OnPlayerInput();
 		}
+		if (Input.GetKeyDown(KeyCode.Escape))
+		{
+			Destroy(this.gameObject);
+		}
 
 		if (Input.GetKeyDown(KeyCode.W))
 		{
@@ -334,7 +338,7 @@ public class DialogueUI : MonoBehaviour
 	}
 
 	private IEnumerator StartSkipCooldown(float seconds)
-	{
+	{ 
 		this.canSkip = false;
 		yield return new WaitForSeconds(seconds);
 		this.canSkip = true;

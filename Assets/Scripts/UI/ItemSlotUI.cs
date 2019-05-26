@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class ItemSlotUI : MonoBehaviour
@@ -6,6 +7,8 @@ public class ItemSlotUI : MonoBehaviour
 	public ItemUI CurrentItem;
 
 	public GameObject SelectionBoarder;
+
+	public Text ItemName;
 
 	public static ItemSlotUI CurrentlySelected { get; private set; }
 
@@ -38,6 +41,7 @@ public class ItemSlotUI : MonoBehaviour
 	{
 		this.CurrentItem = newItem;
 		this.ResetItem();
+		this.ItemName.text = newItem != null ? newItem.ItemName.ToString() : "";
 	}
 
 	public void ResetItem()
@@ -53,6 +57,8 @@ public class ItemSlotUI : MonoBehaviour
 	{
 		var item = this.CurrentItem;
 		this.CurrentItem = null;
+		this.ItemName.text = "";
+
 		return item;
 	}
 

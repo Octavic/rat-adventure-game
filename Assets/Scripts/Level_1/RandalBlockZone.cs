@@ -10,6 +10,7 @@ public class RandalBlockZone : MonoBehaviour, IDialogueEventListener
 	{
 		if(e == DialogueEvents.TOOTH_GIVEN)
 		{
+			InventoryUI.CurrentInstance.RemoveItem(ItemNames.BoneWithTeeth);
 			Destroy(this.gameObject);
 		}
 	}

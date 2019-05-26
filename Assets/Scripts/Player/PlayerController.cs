@@ -60,6 +60,7 @@ public class PlayerController : MonoBehaviour
 		if (FindObjectOfType<DialogueUI>() != null)
 		{
 			this.animatorComp.SetBool(PlayerAnimationParams.IsMoving, false);
+			this.FootStepSource.mute = true;
 			return;
 		}
 

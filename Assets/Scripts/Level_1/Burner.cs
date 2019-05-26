@@ -41,7 +41,7 @@ public class Burner : BaseInteractable
 			return false;
 		}
 
-		if (holdingItem.ItemName == ItemNames.Meat)
+		if (holdingItem.ItemName == ItemNames.RawMeat)
 		{
 			InventoryUI.CurrentInstance.TryAddItem(this.MediumRareMeat);
 			return true;

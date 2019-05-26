@@ -43,6 +43,18 @@ public class InventoryUI : MonoBehaviour
 		return false;
 	}
 
+	public void RemoveItem(ItemNames item)
+	{
+		foreach (var slot in this.ItemSlots)
+		{
+			if (slot.CurrentItem != null && slot.CurrentItem.ItemName == item)
+			{
+				var removed = slot.RemoveItem();
+				Destroy(removed.gameObject);
+			}
+		}
+	}
+
 	protected void Update()
 	{
 		var startingIndex = (int)KeyCode.Alpha1;
