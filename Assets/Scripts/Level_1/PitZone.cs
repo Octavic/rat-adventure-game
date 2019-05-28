@@ -7,6 +7,7 @@ public class PitZone : MonoBehaviour
 	public Animator PitAnimator;
 	public MainCamera MainCameraComp;
 	public Dialogue CantEnterDialogue;
+	public Dialogue SpiceFedDialogue;
 
 	public SimpleChest ToothChest;
 
@@ -37,6 +38,8 @@ public class PitZone : MonoBehaviour
 		this.CutSceneBarsUI.Hide();
 		yield return new WaitForSeconds(0.25f);
 		MainCameraComp.FocusObject = oldFocusObject;
+
+		DialogueUIController.CurrentInstance.PlayDialogue(this.SpiceFedDialogue);
 
 		Destroy(this.gameObject);
 	}

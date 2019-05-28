@@ -631,16 +631,26 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'Testers:
+  m_Text: 'Special thanks to
 
 
     Alex Atwood
 
-    Yifan Xu
-
     Mark Eads
 
-'
+    Raghav Vivek
+
+    Yifan Xu
+
+
+
+
+
+
+
+
+
+    And many more!'
 --- !u!222 &910167033
 CanvasRenderer:
   m_ObjectHideFlags: 0

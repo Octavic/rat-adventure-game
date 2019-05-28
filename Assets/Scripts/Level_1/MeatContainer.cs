@@ -7,4 +7,9 @@ public class MeatContainer : SimpleChest
 	{
 		this.GetComponent<Animator>().SetBool("IsFalling", true);
 	}
+
+	public void PlayMeatSlap()
+	{
+		this.GetComponent<AudioSource>().Play();
+	}
 }

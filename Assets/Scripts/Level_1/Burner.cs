@@ -6,6 +6,9 @@ public class Burner : BaseInteractable
 {
 	public ItemUI MediumRareMeat;
 
+	public GameObject MeatPrefab;
+	public Vector2 MeatOffset;
+
 	public Dialogue NeedFire;
 
 	private Animator AnimatorComp;
@@ -43,11 +46,27 @@ public class Burner : BaseInteractable
 
 		if (holdingItem.ItemName == ItemNames.RawMeat)
 		{
-			InventoryUI.CurrentInstance.TryAddItem(this.MediumRareMeat);
+			this.StartCoroutine(this.CookCoroutine());
 			return true;
 		}
 
 		return false;
+	}
+
+	private IEnumerator CookCoroutine()
+	{
+		var newMeat = Instantiate(this.MeatPrefab, this.transform);
+		newMeat.transform.localPosition = this.MeatOffset;
+		var yScale = 1;
+		for (var i = 0; i < 5; i++)
+		{
+			yield return new WaitForSeconds(0.5f);
+			newMeat.transform.localScale = new Vector3(1, yScale, 1);
+			yScale *= -1;
+		}
+
+		Destroy(newMeat.gameObject);
+		InventoryUI.CurrentInstance.TryAddItem(this.MediumRareMeat);
 	}
 
 	protected override void Start()
