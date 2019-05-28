@@ -1,12 +1,21 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 using System.Linq;
 
 public class ElementalizerUI : MonoBehaviour, IDialogueEventListener
 {
-	public Text CompoundName;
-	public Text CompoundFormula;
+	[Serializable]
+	public class CompoundUI
+	{
+		public CompoundNames CompoundName;
+		public Sprite CompoundSprite;
+	}
+
+	public Image CompoundImage;
+	public List<CompoundUI> AllCompoundSprites;
+	private Dictionary<CompoundNames, CompoundUI> hashedCompoundSprite;
 
 	public Compound CurrentCompound
 	{
@@ -19,13 +28,12 @@ public class ElementalizerUI : MonoBehaviour, IDialogueEventListener
 			this._currentCompound = value;
 			if (value == null)
 			{
-				this.CompoundName.text = "";
-				this.CompoundFormula.text = "";
+				this.CompoundImage.gameObject.SetActive(false);
 			}
 			else
 			{
-				this.CompoundName.text = value.CompoundName.ToString();
-				this.CompoundFormula.text = value.Formula;
+				this.CompoundImage.gameObject.SetActive(true);
+				this.CompoundImage.sprite = this.hashedCompoundSprite[value.CompoundName].CompoundSprite;
 			}
 		}
 	}
@@ -75,6 +83,8 @@ public class ElementalizerUI : MonoBehaviour, IDialogueEventListener
 	protected void Start()
 	{
 		this.CurrentCompound = null;
+		this.hashedCompoundSprite = this.AllCompoundSprites.ToDictionary(compoundUI => compoundUI.CompoundName);
+
 		DialogueEventManager.RegisterListener(DialogueEvents.ELEMENTALIZER_GIVEN, this);
 	}
 
