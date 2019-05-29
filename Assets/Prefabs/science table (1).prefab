@@ -157,6 +157,15 @@ MonoBehaviour:
     EventEmitted: 0
     NextDialogue: 
     Options: []
+  DoneCookingDialogue:
+    Name: DONE_COOKING
+    Messages:
+    - PortraiPrefab: {fileID: 7062524815752548161, guid: bd1dd7b044dcc1f41a1b28e9a5738788,
+        type: 3}
+      Message: Mmmm, delicious medium rare steak~
+    EventEmitted: 0
+    NextDialogue: 
+    Options: []
 --- !u!82 &5907626079572048391
 AudioSource:
   m_ObjectHideFlags: 0

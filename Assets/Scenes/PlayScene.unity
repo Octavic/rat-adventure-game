@@ -1388,6 +1388,15 @@ MonoBehaviour:
   CanInteractElement: 0
   UIOffset: {x: 0, y: 0}
   TargetItem: {fileID: 914306973}
+  PickupDialogue:
+    Name: PICKUP_TOOTHBONE
+    Messages:
+    - PortraiPrefab: {fileID: 7062524815752548161, guid: bd1dd7b044dcc1f41a1b28e9a5738788,
+        type: 3}
+      Message: There we go, a nice Sapphire in that bone!
+    EventEmitted: 0
+    NextDialogue: 
+    Options: []
 --- !u!61 &325197340
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -10590,6 +10599,12 @@ MonoBehaviour:
   CanInteractElement: 0
   UIOffset: {x: 0, y: 0}
   TargetItem: {fileID: 185195094}
+  PickupDialogue:
+    Name: 
+    Messages: []
+    EventEmitted: 0
+    NextDialogue: 
+    Options: []
 --- !u!212 &1708896531
 SpriteRenderer:
   m_ObjectHideFlags: 0

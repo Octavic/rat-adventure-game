@@ -3,8 +3,15 @@ using System.Collections;
 
 public class SimpleChest : BaseContainer
 {
+	public Dialogue PickupDialogue;
+
 	protected void OnRemoveItem()
 	{
+		if (this.PickupDialogue.Messages.Count > 0)
+		{
+			DialogueUIController.CurrentInstance.PlayDialogue(this.PickupDialogue);
+		}
+
 		Destroy(this.gameObject);
 	}
 

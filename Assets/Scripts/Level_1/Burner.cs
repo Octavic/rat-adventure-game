@@ -10,6 +10,7 @@ public class Burner : BaseInteractable
 	public Vector2 MeatOffset;
 
 	public Dialogue NeedFire;
+	public Dialogue DoneCookingDialogue;
 
 	private Animator AnimatorComp;
 	private AudioSource AudioComp;
@@ -66,6 +67,7 @@ public class Burner : BaseInteractable
 		}
 
 		Destroy(newMeat.gameObject);
+		DialogueUIController.CurrentInstance.PlayDialogue(this.DoneCookingDialogue);
 		InventoryUI.CurrentInstance.TryAddItem(this.MediumRareMeat);
 	}
 
