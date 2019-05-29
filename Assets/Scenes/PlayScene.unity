@@ -2388,7 +2388,8 @@ PrefabInstance:
       propertyPath: m_LocalScale.x
       value: -1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 5111781271188166072, guid: 0689ac7f57a2847468edae9446c5be81, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 0689ac7f57a2847468edae9446c5be81, type: 3}
 --- !u!4 &432809142 stripped
 Transform:
@@ -2396,6 +2397,29 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 432809141}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &432809143 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5111781271188166075, guid: 0689ac7f57a2847468edae9446c5be81,
+    type: 3}
+  m_PrefabInstance: {fileID: 432809141}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &432809144
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 432809143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 88ae5f618904b744c92e63c069332ee4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  CanInteractItem: 1
+  CanInteractElement: 0
+  UIOffset: {x: 0.44, y: 0}
+  MoveToPosition: {x: 0, y: 0, z: 0}
+  TransitionTime: 0.5
 --- !u!1 &441111614
 GameObject:
   m_ObjectHideFlags: 0
@@ -12880,6 +12904,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: meat
       objectReference: {fileID: 0}
+    - target: {fileID: 4991768692004776260, guid: 0504550f77056fd488cdaa390fdd4e83,
+        type: 3}
+      propertyPath: TargetItem
+      value: 
+      objectReference: {fileID: 185195094}
     - target: {fileID: 4991768692004776258, guid: 0504550f77056fd488cdaa390fdd4e83,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -12935,11 +12964,6 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4991768692004776260, guid: 0504550f77056fd488cdaa390fdd4e83,
-        type: 3}
-      propertyPath: TargetItem
-      value: 
-      objectReference: {fileID: 185195094}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0504550f77056fd488cdaa390fdd4e83, type: 3}
 --- !u!1001 &5111781271305504090
